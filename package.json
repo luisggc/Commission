@@ -1,44 +1,47 @@
 {
-  "name": "Commission",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "jest-expo"
-  },
-  "dependencies": {
-    "@material-ui/core": "^3.1.2",
-    "apollo-boost": "^0.1.16",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "expo": "^27.0.1",
-    "graphql": "^14.0.2",
-    "material-palette": "^1.0.0",
-    "react": "16.3.1",
-    "react-apollo": "^2.1.11",
-    "react-native": "~0.55.2",
-    "react-native-device-info": "^0.22.5",
-    "react-native-material-ui": "^1.30.1",
-    "react-native-modal-datetime-picker": "^6.0.0",
-    "react-native-modal-selector": "^0.0.29",
-    "react-native-multiple-select": "^0.4.4",
-    "react-native-picker-select": "^4.2.1",
-    "react-native-sectioned-multi-select": "^0.5.2",
-    "react-navigation": "^2.11.2",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
-  }
+	"name": "Commission",
+	"version": "0.1.0",
+	"private": true,
+	"devDependencies": {
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"jest": "^24.1.0",
+		"jest-expo": "32.0.0",
+		"react-native-jest-mocks": "^1.2.0",
+		"react-test-renderer": "^16.4.0"
+	},
+	"main": "./node_modules/expo/AppEntry.js",
+	"scripts": {
+		"start": "expo start",
+		"eject": "expo eject",
+		"android": "expo start --android",
+		"ios": "expo start --ios",
+		"test": "jest"
+	},
+	"jest": {
+		"preset": "jest-expo"
+	},
+	"dependencies": {
+		"expo": "^32.0.0",
+		"react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+		"react": "16.5.0",
+		"@material-ui/core": "^3.1.2",
+		"apollo-boost": "^0.1.16",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-stage-0": "^6.24.1",
+		"babel-preset-stage-2": "^6.24.1",
+		"graphql": "^14.0.2",
+		"material-palette": "^1.0.0",
+		"react-apollo": "^2.1.11",
+		"react-native-device-info": "^0.22.5",
+		"react-native-material-ui": "^1.30.1",
+		"react-native-modal-datetime-picker": "^6.0.0",
+		"react-native-modal-selector": "^0.0.29",
+		"react-native-multiple-select": "^0.4.4",
+		"react-native-picker-select": "^4.2.1",
+		"react-native-sectioned-multi-select": "^0.5.2",
+		"react-navigation": "^2.11.2",
+		"react-redux": "^5.0.7",
+		"redux": "^4.0.0"
+	}
 }

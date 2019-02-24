@@ -1,5 +1,10 @@
 {
-  "expo": {
-    "sdkVersion": "27.0.0"
-  }
+	"expo": {
+		"sdkVersion": "32.0.0",
+		"name": "Commission",
+		"slug": "Commission",
+		"version": "0.1.0",
+		"description": "Faça parte da grande Comissão",
+		"githubUrl": "https://github.com/luisggc/Commission"
+	}
 }
