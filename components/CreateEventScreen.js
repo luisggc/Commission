@@ -1,80 +1,80 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import Card from './Card'
 import { primaryTextColor } from '../utils/colors'
 import { createStackNavigator } from 'react-navigation'
 import { StackNavigatorConfig } from './Header'
 import Form from './Form'
-// import RNPickerSelect from "react-native-picker-select";
-// import SelectMultiple form 'react-native-multiple-select'
-// import SectionedMultiSelect from "./SelectApp";
-// const SelectApp = <View></View>
+import { ChooseIcon } from 'src/components/FormElements'
+import { InputText } from './FormElements'
 
-class CreateEventScreen extends React.Component {
-	submit = a => {
-		console.log('aaaaa')
-		console.log(a)
-		// this.addOptions('assistance', 'olaaaa')
-	}
+function submit(a) {
+	console.log(a)
+}
 
-	render() {
-		return (
-			<Card headerTitle={'Faça a diferença !'} padding>
-				<Form
-					onChange={this.submit}
-					submitText={'Criar Evento !'}
-					form={{
-						chooseIcon: {
-							name: 'Selecione um ícone',
-							type: 'selectIcon'
-						},
-						title: {
-							name: 'Título do Evento',
-							placeholder: 'Evangelismo de rua, Doação, Pregaçãos...',
-							type: 'inputText'
-						},
-						description: {
-							name: 'Breve descrição',
-							placeholder: 'Encontro para a distribuição de agasalhos',
-							type: 'inputText'
-						},
-						organization: {
-							name: 'Organização',
-							placeholder: 'Igreja XYZ, CRU...',
-							type: 'inputText'
-						},
-						assistance: {
-							name: 'Auxílios',
-							options: ['alimentação', 'capacitação', 'transporte', 'bíblia'],
-							value: [],
-							mandatory: false,
-							other: true,
-							type: 'multiselection'
-						},
-						datetime: {
-							name: 'Dia/Horário',
-							type: 'datetime',
-							placeholder: 'Selecione aqui o dia e horário'
-						},
-						recurrency: {
-							name: 'Auxílios',
-							options: [
-								'Uma vez',
-								'Diariamente',
-								'Semanalmente',
-								'Mensalmente',
-								'Semestralmente',
-								'Anualmente'
-							],
-							value: 'Uma vez',
-							// Endereço (colocar mapa) e OBSERVAÇÕES
-							type: 'selection'
-						}
-					}}
-				/>
-			</Card>
-		)
-	}
+function CreateEventScreen() {
+	return (
+		<Card headerTitle={'Faça a diferença !'} padding>
+			{/* <ChooseIcon name="Selecione um ícone" />
+			<InputText
+				name="Título do Evento"
+				placeholder="Evangelismo de rua, Doação, Pregaçãos..."
+			/> */}
+
+			<Form
+				onChange={submit}
+				submitText={'Criar Evento !'}
+				form={{
+					chooseIcon: {
+						name: 'Selecione um ícone',
+						type: 'selectIcon'
+					},
+					title: {
+						name: 'Título do Evento',
+						placeholder: 'Evangelismo de rua, Doação, Pregaçãos...',
+						type: 'inputText'
+					},
+					description: {
+						name: 'Breve descrição',
+						placeholder: 'Encontro para a distribuição de agasalhos',
+						type: 'inputText'
+					},
+					organization: {
+						name: 'Organização',
+						placeholder: 'Igreja XYZ, CRU...',
+						type: 'inputText'
+					},
+					assistance: {
+						name: 'Auxílios',
+						options: ['alimentação', 'capacitação', 'transporte', 'bíblia'],
+						value: [],
+						mandatory: false,
+						other: true,
+						type: 'multiselection'
+					},
+					datetime: {
+						name: 'Dia/Horário',
+						type: 'datetime',
+						placeholder: 'Selecione aqui o dia e horário'
+					},
+					recurrency: {
+						name: 'Auxílios',
+						options: [
+							'Uma vez',
+							'Diariamente',
+							'Semanalmente',
+							'Mensalmente',
+							'Semestralmente',
+							'Anualmente'
+						],
+						value: 'Uma vez',
+						// Endereço (colocar mapa) e OBSERVAÇÕES
+						type: 'selection'
+					}
+				}}
+			/>
+		</Card>
+	)
 }
 
 const styles = StyleSheet.create({

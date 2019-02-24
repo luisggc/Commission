@@ -16,7 +16,6 @@ function rgb2hex(rgb) {
 const primaryLightColor = color.primary.light
 const primaryLight0Color = color.primary['400']
 
-console.log()
 export const mapStyle = [
 	{
 		featureType: 'all',

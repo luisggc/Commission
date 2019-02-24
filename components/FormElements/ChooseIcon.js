@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import color from '../utils/colors'
+import color from 'src/utils/colors'
 import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
-// import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import InputFormat from 'src/components/FormElements/InputFormat'
 
 const styles = StyleSheet.create({
 	containerStyle: {
@@ -107,45 +107,47 @@ class ChooseIcon extends React.Component {
 	}
 
 	render() {
-		const { containerStyle, iconProps, containerIcon, iconContainerStyle } = this.props
+		const { containerStyle, iconProps, containerIcon, iconContainerStyle, name } = this.props
 		let icons = this.props.icons
 		const { selectedId } = this.state
 		icons =
 			selectedId == 0
 				? icons.slice(0, 3)
-				: selectedId == icons.length-1
-					? icons.slice(selectedId - 2, selectedId+1)
-					: icons.slice(selectedId - 1, selectedId + 2)
+				: selectedId == icons.length - 1
+				? icons.slice(selectedId - 2, selectedId + 1)
+				: icons.slice(selectedId - 1, selectedId + 2)
 		return (
-			<View style={{ flex: 1 }}>
-				<View
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						justifyContent: 'center',
-						alignItems: 'center'
-					}}
-				>
-					<View style={containerIcon} />
+			<InputFormat name={name}>
+				<View style={{ flex: 1 }}>
+					<View
+						style={{
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							justifyContent: 'center',
+							alignItems: 'center'
+						}}
+					>
+						<View style={containerIcon} />
+					</View>
+					<View style={containerStyle}>
+						{icons.map(icon => {
+							const { IconComponent, name, id } = icon
+							return (
+								<IconComponent
+									onPress={() => this.onSelectIcon(id)}
+									key={id}
+									{...iconProps}
+									name={name}
+								/>
+							)
+						})}
+					</View>
+					{/* <IconComponent {...iconProps} name={name} /> */}
 				</View>
-				<View style={containerStyle}>
-					{icons.map(icon => {
-						const { IconComponent, name, id } = icon
-						return (
-							<IconComponent
-								onPress={() => this.onSelectIcon(id)}
-								key={id}
-								{...iconProps}
-								name={name}
-							/>
-						)
-					})}
-				</View>
-				{/* <IconComponent {...iconProps} name={name} /> */}
-			</View>
+			</InputFormat>
 		)
 	}
 }

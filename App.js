@@ -1,13 +1,10 @@
 import React from 'react'
-import { StatusBar, StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import { StatusBar, StyleSheet, View } from 'react-native'
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import Drawer from './components/Drawer'
 import HomeScreen from './components/HomeScreen'
 import NotificationScreen from './components/NotificationScreen'
 import ProfileScreen from './components/ProfileScreen'
-import reducer from './reducers'
 import color from './utils/colors'
 import CreateEventScreen from './components/CreateEventScreen'
 import { ApolloProvider } from 'react-apollo'
@@ -55,7 +52,6 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<ApolloProvider client={client}>
-				{/* <Provider store={createStore(reducer)}> */}
 				<View style={styles.container}>
 					<StatusBar
 						backgroundColor={color.primary.dark}
@@ -64,7 +60,6 @@ export default class App extends React.Component {
 					/>
 					<AppNavigator />
 				</View>
-				{/* </Provider> */}
 			</ApolloProvider>
 		)
 	}

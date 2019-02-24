@@ -31,9 +31,11 @@ const color = createMuiTheme({
 			...primaryPalette
 		},
 		secondary: { main: secondaryColor }
+	},
+	typography: {
+		useNextVariants: true
 	}
 }).palette
- console.log(color)
 export default color
 
 // export const white = '#EFF2F7'

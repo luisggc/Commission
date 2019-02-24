@@ -8,19 +8,9 @@ import {
 	Picker,
 	Platform
 } from 'react-native'
-import {
-	TextApp,
-	ThumbImage,
-	Li,
-	Separator,
-	ButtonApp,
-	MultipleSelectApp,
-	UniqueSelectApp
-} from './Layout'
+import { TextApp, ButtonApp, MultipleSelectApp } from './Layout'
 import { datetimeToString } from '../utils'
 import color from '../utils/colors'
-import { createStackNavigator } from 'react-navigation'
-import { StackNavigatorConfig } from './Header'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import ModalSelector from 'react-native-modal-selector'
 import ChooseIcon from './ChooseIcon'
@@ -30,7 +20,6 @@ export default class Form extends React.Component {
 	state = { form: this.props.form }
 
 	formChange = (inputName, value) => {
-		console.log('formchange' + inputName + ' - ' + value)
 		this.setState(state => ({
 			form: {
 				...state.form,
@@ -63,7 +52,6 @@ export default class Form extends React.Component {
 	}
 
 	toggleVisible = inputName => {
-		console.log('toggle')
 		this.setState(state => ({
 			form: {
 				...state.form,

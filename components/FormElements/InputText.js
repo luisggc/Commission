@@ -1,0 +1,29 @@
+import React from 'react'
+import { TextInput, StyleSheet } from 'react-native'
+import color from '../../utils/colors'
+import InputFormat from './InputFormat'
+
+export default function InputText(props) {
+	const { name, value, placeholder } = props
+	return (
+		<InputFormat name={name}>
+			<TextInput
+				multiline={!!value}
+				style={styles.textInput}
+				onChangeText={v => this.formChange(key, v)}
+				// value={this.state.searchText}
+				placeholder={'Ex: ' + placeholder}
+				placeholderTextColor={color.primary.contrastLightText}
+				underlineColorAndroid={'transparent'}
+				keyboardAppearance={'dark'}
+			/>
+		</InputFormat>
+	)
+}
+
+const styles = StyleSheet.create({
+	textInput: {
+		color: color.primary.contrastText,
+		fontSize: 15
+	}
+})

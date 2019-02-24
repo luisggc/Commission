@@ -243,9 +243,7 @@ class SectionedMultiSelect extends PureComponent {
     this.props.searchAdornment
     this.props.searchAdornment(this.props.searchTerm)
   }
-  // componentWillUpdate() { date = new Date();}
-  // componentDidUpdate() {console.log(new Date().valueOf() - date.valueOf())}
-
+  
   getProp = (object, key) => object && object[key]
 
   rejectProp = (items, fn) => items.filter(fn)
