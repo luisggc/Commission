@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
-import Card from './Card'
-import { TextApp, ThumbImage, Li, Separator, ButtonApp, Loading } from './Layout'
-import { getEventQuery } from '../queries/queries'
+import Card from 'src/components/Card'
+import { TextApp, ThumbImage, Li, Separator, ButtonApp, Loading } from 'src/components/Layout'
+import { getEventQuery } from 'src/queries/queries'
 import { graphql } from 'react-apollo'
-import Form from './Form'
+import Form from 'src/components/Form'
 class EventScreen extends React.Component {
 	state = {
 		text: ''

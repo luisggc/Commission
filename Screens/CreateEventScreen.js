@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import Card from './Card'
-import { primaryTextColor } from '../utils/colors'
+import Card from 'src/components/Card'
+import { primaryTextColor } from 'src/utils/colors'
 import { createStackNavigator } from 'react-navigation'
-import { StackNavigatorConfig } from './Header'
-import { ChooseIcon, InputText, MultiSelection, DateTimePicker, Selection } from './FormElements'
+import { StackNavigatorConfig } from '../components/Header'
+import { ChooseIcon, InputText, MultiSelection, DateTimePicker, Selection } from 'src/components/FormElements'
 
 function submit(a) {
 	console.log(a)
@@ -14,10 +14,6 @@ function CreateEventScreen() {
 	return (
 		<Card headerTitle={'Faça a diferença !'} padding>
 			<ChooseIcon name="Selecione um ícone" />
-			<InputText
-				name="Título do Evento"
-				placeholder="Evangelismo de rua, Doação, Pregaçãos..."
-			/>
 			<InputText
 				name="Título do Evento"
 				placeholder="Evangelismo de rua, Doação, Pregaçãos..."

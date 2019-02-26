@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import Card from "./Card";
-import { TextApp, ThumbImage, ButtonApp } from "./Layout";
-import { StackNavigatorConfig } from "./Header";
+import Card from "src/components/Card";
+import { TextApp, ThumbImage, ButtonApp } from "src/components/Layout";
+import { StackNavigatorConfig } from "src/components/Header";
 import { createStackNavigator } from "react-navigation";
-import { Separator } from "./Layout"
+import { Separator } from "src/components/Layout"
 
 const Notification = props => {
   const { title, eventName, icon, time } = props.item;

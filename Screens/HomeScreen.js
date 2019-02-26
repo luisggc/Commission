@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import { View, TextInput, StyleSheet, Image, FlatList, Text, TouchableOpacity } from 'react-native'
+import { View, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 // import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
-import color from '../utils/colors'
-import EventItem from './EventItem'
+import color from 'src/utils/colors'
+import EventItem from 'src/components/EventItem'
 import EventScreen from './EventScreen'
 import { createStackNavigator } from 'react-navigation'
-import { StackNavigatorConfig } from './Header'
-import { Loading } from './Layout'
+import { StackNavigatorConfig } from 'src/components/Header'
+import { Loading } from 'src/components/Layout'
 import { graphql } from 'react-apollo'
-import { getEventsQuery } from '../queries/queries'
+import { getEventsQuery } from 'src/queries/queries'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-// import {LinearGradient} from 'expo'
-import { mapStyle } from '../utils/api'
-// import { Dimensions } from 'react-native'
-// const window = Dimensions.get('window')
+import { mapStyle } from 'src/utils/api'
 
 class HomeScreen extends Component {
 	state = {
@@ -22,6 +19,7 @@ class HomeScreen extends Component {
 	}
 
 	render() {
+		console.log(this.props.data)
 		if (this.props.data.loading) {
 			return <Loading />
 		}

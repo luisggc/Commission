@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import Card from './Card'
-import { TextApp, ThumbImage, Li } from './Layout'
-import { StackNavigatorConfig } from './Header'
+import Card from 'src/components/Card'
+import { TextApp, ThumbImage, Li } from 'src/components/Layout'
+import { StackNavigatorConfig } from 'src/components/Header'
 import { createStackNavigator } from 'react-navigation'
 
 class ProfileScreen extends React.Component {
