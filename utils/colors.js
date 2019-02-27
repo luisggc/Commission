@@ -38,30 +38,41 @@ const color = createMuiTheme({
 }).palette
 export default color
 
-// export const white = '#EFF2F7'
-// export const white_pastel = '#EFF2F7'
-// // export const white_pastel = '#F5F5F5'
-// export const white_pastel_transp ='rgba(245, 245, 245,.8)'
-// // export const dark_blue = '#101727' início
-// export const dark_blue = '#282a2d'
-// // export const brown = '#707070'
-// export const brown = '#383a3e'
-// // export const dark_blue = '#272a3b'
-// export const brown_blue = '#282a2d'
-// export const black = '#383a3e'
+/*
+export const white = '#EFF2F7'
+export const white_pastel = '#EFF2F7'
+// export const white_pastel = '#F5F5F5'
+export const white_pastel_transp ='rgba(245, 245, 245,.8)'
+// export const dark_blue = '#101727' início
+export const dark_blue = '#282a2d'
+// export const brown = '#707070'
+export const brown = '#383a3e'
+// export const dark_blue = '#272a3b'
+export const brown_blue = '#282a2d'
+export const black = '#383a3e'
 
-// export const gray_secondary= '#929498'
-// export const white_transp = '#41444a' //rgba(255, 255, 255, 0.15)'
-// export const orange = '#F5706C'
-// export const green = '#49BEAD'
-// export const red= '#ED7176'
-// export const gray = '#2D3239'
+export const gray_secondary= '#929498'
+export const white_transp = '#41444a' //rgba(255, 255, 255, 0.15)'
+export const orange = '#F5706C'
+export const green = '#49BEAD'
+export const red= '#ED7176'
+export const gray = '#2D3239'
 
-// export const primaryLightColor = '#5c5c5c'
+export const primaryLightColor = '#5c5c5c'
 
-// export const primaryDarkColor = '#0c0c0c'
-// export const secondaryLightColor = '#5ca9ff'
-// export const secondaryDarkColor = '#004f9b'
+export const primaryDarkColor = '#0c0c0c'
+export const secondaryLightColor = '#5ca9ff'
+export const secondaryDarkColor = '#004f9b'
 
-// export const primaryTextColor = '#ffffff'
-// export const secondaryTextColor = '#ffffff'
+export const primaryTextColor = '#ffffff'
+export const secondaryTextColor = '#ffffff'
+
+let styled = {
+    primary: {
+      '-1': "asd",
+      0: '#fff',
+      1: '#f1',
+      2:'#f1dsd',
+    }
+  }
+*/

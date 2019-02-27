@@ -25,6 +25,7 @@
 		"@material-ui/core": "^3.1.2",
 		"apollo-boost": "^0.1.16",
 		"expo": "^32.0.0",
+		"formik": "^1.5.1",
 		"graphql": "^14.0.2",
 		"material-palette": "^1.0.0",
 		"react": "16.5.0",
@@ -33,6 +34,7 @@
 		"react-native-modal-datetime-picker": "^6.0.0",
 		"react-native-modal-selector": "^0.0.29",
 		"react-native-sectioned-multi-select": "^0.5.2",
-		"react-navigation": "^2.11.2"
+		"react-navigation": "^2.11.2",
+		"yup": "^0.26.10"
 	}
 }

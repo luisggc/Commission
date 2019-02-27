@@ -11,7 +11,8 @@ import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
 
 const client = new ApolloClient({
-	uri: 'http://localhost:4000/graphql'
+	//Doesn't work outside you emulator
+	uri: 'http://192.168.0.8:4000/graphql'
 })
 
 const MainNavigator = createDrawerNavigator(

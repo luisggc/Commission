@@ -10,12 +10,12 @@ export default function InputText(props) {
 			<TextInput
 				multiline={!!value}
 				style={styles.textInput}
-				onChangeText={v => this.formChange(key, v)}
 				// value={this.state.searchText}
 				placeholder={'Ex: ' + placeholder}
 				placeholderTextColor={color.primary.contrastLightText}
 				underlineColorAndroid={'transparent'}
 				keyboardAppearance={'dark'}
+				{...props}
 			/>
 		</InputFormat>
 	)
