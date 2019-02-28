@@ -12,12 +12,12 @@ import {
 } from 'src/components/FormElements'
 import { ButtonApp } from 'src/components/Layout'
 import { withFormik } from 'formik'
-// import Yup from 'yup'
+import { TextApp } from '../components/Layout'
+import * as Yup from 'yup'
 
 function CreateEventScreen(props) {
 	const { values, touched, errors, handleChange, handleBlur, setFieldValue, handleSubmit } = props
-	console.log(setFieldValue)
-	console.log('screen', values)
+	console.log(errors)
 	return (
 		<Card headerTitle={'Faça a diferença !'} padding>
 			<SafeAreaView>
@@ -30,7 +30,7 @@ function CreateEventScreen(props) {
 				<InputText
 					name="Breve descrição"
 					placeholder="Encontro para a distribuição de agasalhos"
-					onChangeText={handleChange('name')}
+					onChangeText={handleChange('description')}
 				/>
 
 				<InputText
@@ -44,28 +44,40 @@ function CreateEventScreen(props) {
 					options={['alimentação', 'capacitação', 'transporte', 'bíblia']}
 					selectedItems={values.assistances}
 					onPress={setFieldValue}
+					field="assistances"
 					// onAddPress={(e) => console.log('onaddpress', e)} // this.addOptions(key, 'oi')}
 				/>
-				<DateTimePicker name="Dia/Horário" placeholder="Selecione aqui o dia e horário" />
 
 				<Selection
-					name="Auxílios"
+					name="Recorrência"
 					options={[
 						'Uma vez',
 						'Diariamente',
 						'Semanalmente',
 						'Mensalmente',
 						'Semestralmente',
-						'Anualmente'
+						'Anualmente',
+						'Temporada'
 					]}
-					value="Uma vez"
+					value={values.recurrence}
+					onChange={handleChange('recurrence')}
 				/>
 
-				<ButtonApp onPress={() => setFieldValue('assistances', 'oi')} style={styles.button}>
-					Assistance !
-				</ButtonApp>
+				{values.recurrence == 'Temporada' && (
+					<TextApp>
+						Temporada trata-se de um período de tempo fixo em um local, como uma viagem.
+					</TextApp>
+				)}
 
-				<ButtonApp onPress={handleSubmit} style={styles.button}>
+				<DateTimePicker
+					field="datetimeStart"
+					name="Dia/Horário"
+					placeholder="Selecione aqui o dia e horário"
+					setFieldValue={setFieldValue}
+					value={values.datetimeStart}
+				/>
+
+				<ButtonApp onPress={() => sendForm(errors, handleSubmit)} style={styles.button}>
 					Enviar !
 				</ButtonApp>
 			</SafeAreaView>
@@ -75,41 +87,63 @@ function CreateEventScreen(props) {
 
 const styles = StyleSheet.create({
 	button: {
-		marginTop: 10,
+		marginTop: 30,
 		paddingVertical: 15,
 		paddingHorizontal: 10
 	}
 })
 
-function mapPropsToValues({ name, host, description, user, assistances }) {
+function sendForm(errors, handleSubmit) {
+	const errorsText = Object.keys(errors).reduce((acc, value) => {
+		console.log(acc, value)
+		return `${acc}
+		${errors[value]}`
+	}, '')
+	errorsText && alert(errorsText.substring(1))
+	handleSubmit()
+}
+function mapPropsToValues({
+	name,
+	host,
+	description,
+	user,
+	assistances,
+	recurrence,
+	datetimeStart
+}) {
 	return {
 		name: name || '',
 		host: host || '',
 		user: user || '',
 		description: description || '',
-		assistances: assistances || []
+		assistances: assistances || [],
+		recurrence: recurrence || 'Uma vez',
+		datetimeStart: datetimeStart || ''
 	}
 }
 
-{
-	/* id: ID
-name: String
-host: String
-description: String
-user: User
-assistances: [Assistance] */
-}
-
 function handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+	console.log('submitttt')
 	alert(JSON.stringify(values))
 }
 
-//   validationSchema: Yup.object().shape({
-// 	email: Yup.string().email('Email not valid').required('Email is required'),
-// 	password: Yup.string().min(9, 'Password must be 9 characters or longer').required('Password is required')
-//   }),
+const validationSchema = Yup.object().shape({
+	name: Yup.string()
+		.min(4, '"Nome" deve possuir no mínimo 4 caracteres')
+		.required('"Nome" deve ser preenchido'),
+	host: Yup.string().required('"Organizador" deve ser preenchido'),
+	// user: Yup.string().required('"Usuário" deve ser preenchido'),
+	description: Yup.string().required('"Descrição" deve ser preenchido'),
+	recurrence: Yup.string().required('"Recorrência" deve ser preenchido'),
+	host: Yup.string().required('"Organizador" deve ser preenchido'),
+	datetimeStart: Yup.string().required('"Dia do Evento" deve ser preenchido')
+})
 
-const CreateEventScreenFormik = withFormik({ mapPropsToValues, handleSubmit })(CreateEventScreen)
+const CreateEventScreenFormik = withFormik({
+	mapPropsToValues,
+	validationSchema,
+	handleSubmit
+})(CreateEventScreen)
 
 export default createStackNavigator(
 	{

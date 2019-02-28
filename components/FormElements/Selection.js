@@ -5,16 +5,12 @@ import { StyleSheet, TextInput, Picker, Platform } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
 
 export default function Selection(props) {
-	const { name, placeholder, value } = props
+	const { onChange, name, placeholder, value } = props
 	const options = optionsFormatter(props.options)
 	return (
 		<InputFormat name={name}>
 			{Platform.OS === 'ios' ? (
-				<ModalSelector
-					data={options}
-					initValue={placeholder}
-					onChange={values => this.formChange(key, values.key)}
-				>
+				<ModalSelector data={options} initValue={placeholder} onChange={onChange}>
 					<TextInput
 						style={styles.textInput}
 						editable={false}
@@ -29,7 +25,7 @@ export default function Selection(props) {
 						height: 23
 					}}
 					selectedValue={value}
-					onValueChange={values => this.formChange(key, values)}
+					onValueChange={onChange}
 				>
 					{options.map(option => (
 						<Picker.Item key={option.key} label={option.label} value={option.key} />

@@ -3,15 +3,14 @@ import { MultipleSelectApp } from '../Layout'
 import InputFormat from './InputFormat'
 
 export default function MultiSelection(iprops) {
-	let { options, selectedItems, onPress, ...props } = iprops
+	let { options, selectedItems, onPress, field, ...props } = iprops
 	options = optionsFormatter(options)
-	console.log('options', options)
 	return (
 		<InputFormat name={props.name}>
 			<MultipleSelectApp
 				options={options}
 				selectedItems={selectedItems}
-				onSelectedItemsChange={newValues => onPress('assistances', newValues)}
+				onSelectedItemsChange={newValues => onPress(field, newValues)}
 				{...props}
 			/>
 		</InputFormat>

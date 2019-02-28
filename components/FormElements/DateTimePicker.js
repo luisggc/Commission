@@ -15,7 +15,7 @@ export default class DateTimePickerApp extends React.Component {
 	}
 
 	render() {
-		const { name, placeholder, value } = this.props
+		const { name, placeholder, value, setFieldValue, field } = this.props
 		const { visible } = this.state
 		return (
 			<View style={styles.inputContainer}>
@@ -29,7 +29,7 @@ export default class DateTimePickerApp extends React.Component {
 					isVisible={visible}
 					onChangeText={v => this.formChange(key, v)}
 					onConfirm={date => {
-						this.formChange(key, date)
+						setFieldValue(field, date)
 						this.toggleVisible()
 					}}
 					onCancel={() => this.toggleVisible()}
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	inputContainer: {
-		marginTop: 10,
+		marginTop: 20,
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between'
