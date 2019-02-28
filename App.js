@@ -1,21 +1,23 @@
 import React from 'react'
 import { StatusBar, StyleSheet, View } from 'react-native'
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
+import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
 import Drawer from './components/Drawer'
 import HomeScreen from './Screens/HomeScreen'
 import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
 import color from './utils/colors'
 import CreateEventScreen from './Screens/CreateEventScreen'
+import EventScreen from './Screens/EventScreen'
 import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
+import { StackNavigatorConfig } from 'src/components/Header'
 
 const client = new ApolloClient({
 	//Doesn't work outside you emulator
 	uri: 'http://192.168.0.8:4000/graphql'
 })
 
-const MainNavigator = createDrawerNavigator(
+const AppStackNavigator = createStackNavigator(
 	{
 		Início: {
 			screen: HomeScreen
@@ -28,26 +30,23 @@ const MainNavigator = createDrawerNavigator(
 		},
 		'Criar Evento': {
 			screen: CreateEventScreen
-		}
+		},
+		EventScreen
+	},
+	StackNavigatorConfig()
+)
+
+const AppNavigator = createDrawerNavigator(
+	{
+		AppStackNavigator
 	},
 	{
-		initialRouteName: 'Início',
 		contentComponent: Drawer,
 		drawerBackgroundColor: color.primary.main
 	}
 )
 
-const AppNavigator = createStackNavigator(
-	{
-		MainNavigator: {
-			screen: MainNavigator
-		}
-	},
-	{
-		header: null,
-		headerMode: 'none'
-	}
-)
+const AppContainer = createAppContainer(AppNavigator)
 
 export default class App extends React.Component {
 	render() {
@@ -59,7 +58,7 @@ export default class App extends React.Component {
 						barStyle="light-content"
 						style={{ marginBottom: 30, paddingbottom: 40 }}
 					/>
-					<AppNavigator />
+					<AppContainer />
 				</View>
 			</ApolloProvider>
 		)

@@ -16,7 +16,7 @@ class ProfileScreen extends React.Component {
 	render() {
 		const { name, description, aim, age } = this.state
 		return (
-			<Card padding>
+			<Card goTo="Início" padding>
 				<ThumbImage image={require('../assets/images/user.jpg')} />
 				<View style={styles.statusContainer}>
 					<TextApp>{name}</TextApp>

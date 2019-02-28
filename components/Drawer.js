@@ -6,6 +6,8 @@ import color from '../utils/colors'
 import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {
+	console.log("---------------")
+	console.log(Object.keys(props))
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>

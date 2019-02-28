@@ -100,17 +100,19 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default createStackNavigator(
-	{
-		Home: {
-			screen: graphql(getEventsQuery)(HomeScreen)
-		},
-		EventScreen: {
-			screen: EventScreen
-		}
-	},
-	StackNavigatorConfig
-)
+export default graphql(getEventsQuery)(HomeScreen)
+
+// createStackNavigator(
+// 	{
+// 		Home: {
+// 			screen: graphql(getEventsQuery)(HomeScreen)
+// 		},
+// 		EventScreen: {
+// 			screen: EventScreen
+// 		}
+// 	},
+// 	StackNavigatorConfig
+// )
 
 // const events = [
 // 	{

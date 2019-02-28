@@ -7,22 +7,23 @@ import { withNavigation } from 'react-navigation'
 
 const Card = props => {
 	const pad = props.padding ? { paddingHorizontal: 23, paddingTop: 15 } : {}
+	const { style, navigation, children, headerTitle, goTo} = props
 	return (
-		<ScrollView contentContainerStyle={[props.style, styles.container, pad]}>
-			<TouchableOpacity onPress={() => props.navigation.goBack(null)} style={styles.backButton}>
+		<ScrollView contentContainerStyle={[style, styles.container, pad]}>
+			<TouchableOpacity onPress={() => goTo ? navigation.navigate(goTo) : navigation.goBack(null)} style={styles.backButton}>
 				<Ionicons style={{ color: color.primary.contrastText }} size={40} name="ios-arrow-back" />
 			</TouchableOpacity>
 
-			{props.headerTitle ? (
+			{headerTitle ? (
 				<View>
 					<View style={styles.headerTitle}>
-						<TextApp style={{ fontSize: 25 }}>{props.headerTitle}</TextApp>
+						<TextApp style={{ fontSize: 25 }}>{headerTitle}</TextApp>
 					</View>
 					<Separator style={{ marginBottom: 10 }} />
 				</View>
 			) : null}
 
-			<View>{props.children}</View>
+			<View>{children}</View>
 		</ScrollView>
 	)
 }

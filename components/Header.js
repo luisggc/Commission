@@ -91,11 +91,14 @@ export const navigationOptions = {
 	header: props => <Header navigation={props.navigation} />
 }
 
-export const StackNavigatorConfig = {
-	cardStyle: {
-		flex: 1,
-		backgroundColor: color.primary.main
-	},
-	headerMode: 'float',
-	navigationOptions
+export const StackNavigatorConfig = withHeader => {
+	const defaultNavigationOptions =
+		withHeader == 'none' ? { header: null, headerMode: 'none' } : navigationOptions
+	return {
+		cardStyle: {
+			flex: 1,
+			backgroundColor: color.primary.main
+		},
+		defaultNavigationOptions
+	}
 }
