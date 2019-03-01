@@ -1,8 +1,7 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
 import Card from 'src/components/Card'
-import { createStackNavigator } from 'react-navigation'
-import { StackNavigatorConfig } from 'src/components/Header'
+
 import {
 	ChooseIcon,
 	InputText,
@@ -17,7 +16,6 @@ import * as Yup from 'yup'
 
 function CreateEventScreen(props) {
 	const { values, touched, errors, handleChange, handleBlur, setFieldValue, handleSubmit } = props
-	console.log(errors)
 	return (
 		<Card headerTitle={'Faça a diferença !'} padding>
 			<SafeAreaView>
@@ -139,15 +137,8 @@ const validationSchema = Yup.object().shape({
 	datetimeStart: Yup.string().required('"Dia do Evento" deve ser preenchido')
 })
 
-const CreateEventScreenFormik = withFormik({
+export default withFormik({
 	mapPropsToValues,
 	validationSchema,
 	handleSubmit
 })(CreateEventScreen)
-
-export default createStackNavigator(
-	{
-		CreateEventScreenFormik
-	},
-	StackNavigatorConfig
-)

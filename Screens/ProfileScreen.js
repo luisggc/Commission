@@ -2,8 +2,6 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import Card from 'src/components/Card'
 import { TextApp, ThumbImage, Li } from 'src/components/Layout'
-import { StackNavigatorConfig } from 'src/components/Header'
-import { createStackNavigator } from 'react-navigation'
 
 class ProfileScreen extends React.Component {
 	state = {
@@ -16,7 +14,7 @@ class ProfileScreen extends React.Component {
 	render() {
 		const { name, description, aim, age } = this.state
 		return (
-			<Card goTo="Início" padding>
+			<Card padding>
 				<ThumbImage image={require('../assets/images/user.jpg')} />
 				<View style={styles.statusContainer}>
 					<TextApp>{name}</TextApp>
@@ -41,9 +39,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default createStackNavigator(
-	{
-		ProfileScreen
-	},
-	StackNavigatorConfig
-)
+export default ProfileScreen

@@ -6,8 +6,8 @@ import color from '../utils/colors'
 import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {
-	console.log("---------------")
-	console.log(Object.keys(props))
+	const activeRouterName = props.navigation.state.routes[0].routes.slice(-1)[0].routeName
+
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>
@@ -20,6 +20,34 @@ export default (CustomDrawerContentComponent = props => {
 					<TextApp secondary>Apaixonado por Jesus</TextApp>
 				</View>
 			</View>
+			<SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
+				{['Início', 'Perfil', 'Notificações', 'Criar Evento'].map(routerName => (
+					<View
+						key={routerName}
+						style={{
+							borderTopWidth: 2,
+							borderTopColor: color.primary.contrastText,
+							shadowOffset: { width: 0, height: 2 },
+							elevation: 2,
+							shadowColor: 'black',
+							shadowOpacity: 0.3,
+							backgroundColor: routerName == activeRouterName && color.primary.main
+						}}
+					>
+						<TextApp
+							onPress={() => props.navigation.navigate(routerName)}
+							style={{
+								color:
+									routerName == activeRouterName
+										? color.secondary.main
+										: color.primary.contrastText
+							}}
+						>
+							{routerName}
+						</TextApp>
+					</View>
+				))}
+			</SafeAreaView>
 
 			<SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
 				<DrawerItems {...props} {...itemsStyle} />

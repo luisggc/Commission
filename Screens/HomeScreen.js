@@ -4,9 +4,6 @@ import { View, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-n
 import { FontAwesome } from '@expo/vector-icons'
 import color from 'src/utils/colors'
 import EventItem from 'src/components/EventItem'
-import EventScreen from './EventScreen'
-import { createStackNavigator } from 'react-navigation'
-import { StackNavigatorConfig } from 'src/components/Header'
 import { Loading } from 'src/components/Layout'
 import { graphql } from 'react-apollo'
 import { getEventsQuery } from 'src/queries/queries'
@@ -96,7 +93,7 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		left: 0,
 		right: 0,
-		height:  300//window.height - 330,
+		height: 300 //window.height - 330,
 	}
 })
 
