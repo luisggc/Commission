@@ -14,7 +14,7 @@ import { StackNavigatorConfig } from 'src/components/Header'
 
 const client = new ApolloClient({
 	//Doesn't work outside you emulator
-	uri: 'http://192.168.0.8:4000/graphql'
+	uri: 'http://10.0.10.166:4000/graphql'
 })
 
 const AppStackNavigator = createStackNavigator(
@@ -37,9 +37,7 @@ const AppStackNavigator = createStackNavigator(
 )
 
 const AppNavigator = createDrawerNavigator(
-	{
-		AppStackNavigator
-	},
+	{ AppStackNavigator },
 	{
 		contentComponent: Drawer,
 		drawerBackgroundColor: color.primary.main

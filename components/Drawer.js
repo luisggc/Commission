@@ -7,7 +7,6 @@ import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {
 	const activeRouterName = props.navigation.state.routes[0].routes.slice(-1)[0].routeName
-
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>
@@ -20,37 +19,27 @@ export default (CustomDrawerContentComponent = props => {
 					<TextApp secondary>Apaixonado por Jesus</TextApp>
 				</View>
 			</View>
-			<SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
+			<SafeAreaView
+				style={{ flex: 1, borderTopWidth: 2, borderTopColor: color.primary.contrastText }}
+				forceInset={{ top: 'always', horizontal: 'never' }}
+			>
 				{['Início', 'Perfil', 'Notificações', 'Criar Evento'].map(routerName => (
-					<View
-						key={routerName}
-						style={{
-							borderTopWidth: 2,
-							borderTopColor: color.primary.contrastText,
-							shadowOffset: { width: 0, height: 2 },
-							elevation: 2,
-							shadowColor: 'black',
-							shadowOpacity: 0.3,
-							backgroundColor: routerName == activeRouterName && color.primary.main
-						}}
-					>
+					<View key={routerName} style={routerName == activeRouterName && styles.activeView}>
 						<TextApp
 							onPress={() => props.navigation.navigate(routerName)}
 							style={{
 								color:
 									routerName == activeRouterName
 										? color.secondary.main
-										: color.primary.contrastText
+										: color.primary.contrastText,
+								margin: 16,
+								fontWeight: 'bold'
 							}}
 						>
 							{routerName}
 						</TextApp>
 					</View>
 				))}
-			</SafeAreaView>
-
-			<SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
-				<DrawerItems {...props} {...itemsStyle} />
 			</SafeAreaView>
 		</ScrollView>
 	)
@@ -70,8 +59,18 @@ const styles = StyleSheet.create({
 	statusContainer: {
 		marginTop: 10,
 		alignItems: 'center'
+	},
+	activeView: {
+		borderTopWidth: 2,
+		// borderTopColor: color.primary.contrastText,
+		borderTopColor: 'transparent',
+		shadowOffset: { width: 0, height: 2 },
+		shadowColor: 'black',
+		shadowOpacity: 0.3,
+		elevation: 1
 	}
 })
+
 const itemsStyle = {
 	itemsContainerStyle: {
 		borderTopWidth: 2,
