@@ -10,35 +10,46 @@ import {
 	Platform,
 	ActivityIndicator
 } from 'react-native'
-import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import ModalSelector from 'react-native-modal-selector'
-import color from '../utils/colors'
+import color, { colorNew } from '../utils/colors'
+import styled from 'styled-components'
 
 const colorschange = color
 
-export const TextApp = props => {
-	const color = props.secondary
-		? colorschange.secondary.main
-		: props.primary
-			? colorschange.primary.main
-			: props.primaryLight
-				? colorschange.primary.contrastLightText
-				: colorschange.primary.contrastText //color.text.primary
-
-	const stylesShow = [
-		styles.text,
-		{ color: color },
-		props.secondary
-			? {
-					textShadowColor: colorschange.primary.main,
-					textShadowOffset: { width: 0.1, heigh: 0.1 },
-					textShadowRadius: 1
-			  }
-			: {},
-		props.style
-	]
-	return <Text {...props} style={stylesShow} />
-}
+export const TextApp = styled.Text`
+	color: ${p =>
+		p.primary
+			? p.theme.color.primary(0)
+			: p.secondary
+			? p.theme.color.secondary(0)
+			: p.dark
+			? p.lowContrast
+				? p.theme.color.dark.lowContrast
+				: p.highContrast
+				? p.theme.color.dark.highContrast
+				: p.disabled
+				? p.theme.color.dark.disabled
+				: p.theme.color.dark.contrast
+			: p.lowContrast
+			? p.theme.color.light.lowContrast
+			: p.highContrast
+			? p.theme.color.light.highContrast
+			: p.disabled
+			? p.theme.color.light.disabled
+			: p.theme.color.light.contrast};
+`
+// ${p => p.primary ? p.theme.color.primary(0):
+// 	p.secondary ? p.theme.color.secondary(0):
+// 	p.dark ? (
+// 		p.lowContrast ? p.theme.color.dark.lowContrast :
+// 		p.highContrast ? p.theme.color.dark.highContrast :
+// 		p.disabled ? p.theme.color.dark.disabled :
+// 		p.theme.color.dark.contrast
+// 	):
+// 	p.lowContrast ? p.theme.color.light.lowContrast :
+// 	p.highContrast ? p.theme.color.light.highContrast :
+// 	p.disabled ? p.theme.color.light.disabled :
+// 	p.theme.color.light.contrast
 
 export const ThumbImage = props => {
 	const { image, style } = props
@@ -47,7 +58,10 @@ export const ThumbImage = props => {
 	const custom = { height: custom_size, width: custom_size }
 
 	return (
-		<Image style={[styles.IconImage, {borderRadius: custom_size/2}, custom, style ]} source={image} />
+		<Image
+			style={[styles.IconImage, { borderRadius: custom_size / 2 }, custom, style]}
+			source={image}
+		/>
 	)
 }
 
@@ -63,59 +77,33 @@ export const Li = ({ style, items = [] }) => {
 	})
 }
 
-export const ButtonApp = props => (
-	<TouchableOpacity {...props} style={[styles.buttonApp, props.style]}>
-		<TextApp>{props.children}</TextApp>
-	</TouchableOpacity>
-)
+export const ButtonAppOnly = styled.TouchableOpacity`
+	min-width: 90;
+	align-items: center;
+	padding: 10px;
+	border-radius: 2;
+	background-color: ${p => (p.primary ? p.theme.color.primary() : p.theme.color.secondary(0))};
+`
+
+export const ButtonApp = props => {
+	const { text, children, ...buttonProps } = props
+	const textProps = text ? text : { dark: true }
+	return (
+		<ButtonAppOnly {...buttonProps}>
+			<TextApp {...textProps}>{children}</TextApp>
+		</ButtonAppOnly>
+	)
+}
+
+// export const ButtonApp = props => (
+// 	<TouchableOpacity {...props} style={[styles.buttonApp, props.style]}>
+// 		<TextApp>{props.children}</TextApp>
+// 	</TouchableOpacity>
+// )
 
 export const Separator = props => <View style={[styles.sep, props.style]} />
 
-export const MultipleSelectApp = props => (
-	<SectionedMultiSelect
-		styles={{
-			selectToggle: {
-				// borderRadius: 5,
-				// padding: 5,
-				// marginBottom: 5,
-				// color: colorschange.text.primary
-			}
-		}}
-		colors={{
-			primary: colorschange.primary.main,
-			selectToggleTextColor: colorschange.primary.contrastText
-		}}
-		searchPlaceholderText={'Procure...'}
-		removeAllText={'Remova todos'}
-		selectText={'Selecione aqui'}
-		confirmText={'Confirme'}
-		selectedText={'selecionado(s)'}
-		subKey="children"
-		uniqueKey="id"
-		showDropDowns={true}
-		readOnlyHeadings={true}
-		showDropDowns={false}
-		selectChildren={true}
-		searchSelectionColor={colorschange.primary.contrastText}
-		searchPlaceholderText={'Pesquise aqui'}
-		noResultsComponent={
-			<TouchableOpacity onPress={() => props.onAddPress}>
-				<TextApp secondary>
-					Sem resultados para esse nome
-					{/* Clique aqui para adicionar. */}
-				</TextApp>
-			</TouchableOpacity>
-		}
-		items={[
-			{
-				name: 'Selecione os itens ou adicione',
-				id: -1,
-				children: props.options
-			}
-		]}
-		{...props}
-	/>
-)
+
 
 export const UniqueSelectApp = props => {
 	const { options, value, placeholder, key_i, onChange } = props

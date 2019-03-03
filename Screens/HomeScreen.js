@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 // import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
-import color from 'src/utils/colors'
+import color, { newColor } from 'src/utils/colors'
 import EventItem from 'src/components/EventItem'
 import { Loading } from 'src/components/Layout'
 import { graphql } from 'react-apollo'
@@ -89,10 +89,8 @@ const styles = StyleSheet.create({
 		paddingVertical: 10
 	},
 	flatContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
+		backgroundColor: newColor.light.background,
+		elevation: 2,
 		height: 300 //window.height - 330,
 	}
 })

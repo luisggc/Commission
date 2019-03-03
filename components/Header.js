@@ -1,5 +1,5 @@
 import React from 'react'
-import color from '../utils/colors'
+import color, { newColor } from '../utils/colors'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 // import { withNavigation } from 'react-navigation'
@@ -33,7 +33,7 @@ class Header extends React.Component {
 					style={styles.padding5}
 					onPress={() => this.props.navigation.openDrawer()}
 				>
-					<FontAwesome size={28} color={color.primary.contrastText} name="bars" />
+					<FontAwesome size={28} color={newColor.dark.contrast} name="bars" />
 				</TouchableOpacity>
 
 				<View style={styles.padding5}>
@@ -41,7 +41,7 @@ class Header extends React.Component {
 				</View>
 
 				<TouchableOpacity style={styles.padding5} onPress={() => this.goToNotification()}>
-					<FontAwesome size={28} color={color.primary.contrastText} name="bell-o" />
+					<FontAwesome size={28} color={newColor.dark.contrast} name="bell-o" />
 
 					{notificationCount > 0 ? (
 						<View
@@ -55,10 +55,10 @@ class Header extends React.Component {
 								borderRadius: 20,
 								alignItems: 'center',
 								justifyContent: 'center',
-								backgroundColor: color.secondary.main
+								backgroundColor: newColor.secondary()
 							}}
 						>
-							<Text style={{ color: color.primary.contrastText }}>{notificationCount}</Text>
+							<Text style={{ color: newColor.light.contrast }}>{notificationCount}</Text>
 						</View>
 					) : null}
 				</TouchableOpacity>
@@ -76,9 +76,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		padding: -5,
-		backgroundColor: color.primary.main,
-		borderBottomColor: color.secondary.main,
-		borderBottomWidth: 1
+		backgroundColor: newColor.primary(),
+		borderBottomColor: newColor.secondary(),
+		borderBottomWidth: 2
 	},
 	padding5: {
 		padding: 5
@@ -97,7 +97,7 @@ export const StackNavigatorConfig = withHeader => {
 	return {
 		cardStyle: {
 			flex: 1,
-			backgroundColor: color.primary.main
+			backgroundColor: newColor.light.background
 		},
 		defaultNavigationOptions
 	}

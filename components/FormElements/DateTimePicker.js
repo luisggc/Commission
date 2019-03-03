@@ -3,15 +3,14 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { TextApp } from '../Layout'
 import { datetimeToString } from 'src/utils'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import color from 'src/utils/colors'
+import { newColor } from 'src/utils/colors'
 
 export default class DateTimePickerApp extends React.Component {
-
-	state = { visible: false}
+	state = { visible: false }
 
 	toggleVisible = () => {
 		const { visible } = this.state
-		this.setState({visible: !visible})
+		this.setState({ visible: !visible })
 	}
 
 	render() {
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	textInput: {
-		color: color.primary.contrastText,
+		color: newColor.light.contrast,
 		fontSize: 15
 	},
 	textInputContainer: {
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		// backgroundColor: white_transp,
 		borderRadius: 2,
-		borderColor: color.primary.main,
+		borderColor: newColor.light.contrast,
 		borderWidth: 0.5,
 		shadowOffset: { width: 1, height: 1 },
 		shadowColor: 'black',
