@@ -1,22 +1,8 @@
-import color from './colors'
+import { newColor } from '../../utils/colors'
 
-function rgb2hex(rgb) {
-	rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)
-	return rgb && rgb.length === 4
-		? '#' +
-				('0' + parseInt(rgb[1], 10).toString(16)).slice(-2) +
-				('0' + parseInt(rgb[2], 10).toString(16)).slice(-2) +
-				('0' + parseInt(rgb[3], 10).toString(16)).slice(-2)
-		: ''
-}
+const { lowContrast, background } = newColor.light
 
-// const primaryLightColor = rgb2hex(color.primary.light)
-// const primaryLight0Color = rgb2hex(color.primary['400'])
-
-const primaryLightColor = color.primary.light
-const primaryLight0Color = color.primary['400']
-
-export const mapStyle = [
+export default mapStyle = [
 	{
 		featureType: 'all',
 		elementType: 'labels.text.fill',
@@ -34,7 +20,7 @@ export const mapStyle = [
 				visibility: 'on'
 			},
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			}
 		]
 	},
@@ -52,7 +38,7 @@ export const mapStyle = [
 		elementType: 'geometry.fill',
 		stylers: [
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			}
 		]
 	},
@@ -61,7 +47,7 @@ export const mapStyle = [
 		elementType: 'geometry.stroke',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			},
 			{
 				// lightness: 17
@@ -76,7 +62,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			}
 		]
 	},
@@ -85,7 +71,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			},
 			{
 				// lightness: 21
@@ -97,7 +83,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			}
 		]
 	},
@@ -106,7 +92,7 @@ export const mapStyle = [
 		elementType: 'geometry.fill',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			}
 		]
 	},
@@ -115,7 +101,7 @@ export const mapStyle = [
 		elementType: 'geometry.stroke',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			},
 			{
 				weight: 0.2
@@ -127,7 +113,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			},
 			{
 				// lightness: 18
@@ -139,7 +125,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			},
 			{
 				// lightness: 16
@@ -151,7 +137,7 @@ export const mapStyle = [
 		elementType: 'geometry.stroke',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			}
 		]
 	},
@@ -160,7 +146,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLightColor
+				color: background
 			},
 			{
 				// lightness: 19
@@ -172,7 +158,7 @@ export const mapStyle = [
 		elementType: 'geometry',
 		stylers: [
 			{
-				color: primaryLight0Color
+				color: lowContrast
 			},
 			{
 				// lightness: 17

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import color from 'src/utils/colors'
+import { newColor } from 'src/utils/colors'
 import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 import InputFormat from 'src/components/FormElements/InputFormat'
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 		height: 90,
 		width: 90,
 		borderRadius: 45,
-		borderColor: color.primary.light,
+		borderColor: newColor.light.highContrast,
 		borderWidth: 6,
 		alignItems: 'center',
 		alignSelf: 'center',
@@ -91,7 +91,7 @@ class ChooseIcon extends React.Component {
 		iconProps: {
 			// style: styles.containerIcon,
 			size: 50,
-			color: color.primary.light
+			color: newColor.light.contrast
 		},
 		containerIcon: styles.containerIcon,
 		containerStyle: styles.containerStyle,

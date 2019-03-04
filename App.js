@@ -1,20 +1,21 @@
 import React from 'react'
 import { StatusBar, StyleSheet, View } from 'react-native'
 import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
-import Drawer from './components/Drawer'
+import { drawerNavigatorConfig } from './components/Drawer'
 import HomeScreen from './Screens/HomeScreen'
 import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
-import color from './utils/colors'
+import color, { newColor, theme } from './utils/colors'
 import CreateEventScreen from './Screens/CreateEventScreen'
 import EventScreen from './Screens/EventScreen'
 import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
 import { StackNavigatorConfig } from 'src/components/Header'
+import { ThemeProvider } from 'styled-components'
 
 const client = new ApolloClient({
 	//Doesn't work outside you emulator
-	uri: 'http://10.0.10.166:4000/graphql'
+	uri: 'http://192.168.0.11:4000/graphql'
 })
 
 const AppStackNavigator = createStackNavigator(
@@ -36,13 +37,7 @@ const AppStackNavigator = createStackNavigator(
 	StackNavigatorConfig()
 )
 
-const AppNavigator = createDrawerNavigator(
-	{ AppStackNavigator },
-	{
-		contentComponent: Drawer,
-		drawerBackgroundColor: color.primary.main
-	}
-)
+const AppNavigator = createDrawerNavigator({ AppStackNavigator }, drawerNavigatorConfig())
 
 const AppContainer = createAppContainer(AppNavigator)
 
@@ -50,14 +45,16 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<ApolloProvider client={client}>
-				<View style={styles.container}>
-					<StatusBar
-						backgroundColor={color.primary.dark}
-						barStyle="light-content"
-						style={{ marginBottom: 30, paddingbottom: 40 }}
-					/>
-					<AppContainer />
-				</View>
+				<ThemeProvider theme={theme}>
+					<View style={styles.container}>
+						<StatusBar
+							backgroundColor={newColor.light.background}
+							barStyle="light-content"
+							style={{ marginBottom: 30, paddingbottom: 40 }}
+						/>
+						<AppContainer />
+					</View>
+				</ThemeProvider>
 			</ApolloProvider>
 		)
 	}

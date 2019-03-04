@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
-import Card from 'src/components/Card'
+import { Card } from 'src/components/Layout'
 
 import {
 	ChooseIcon,

@@ -8,7 +8,6 @@ import materialpalette from 'material-palette'
 function getPalette(hex) {
 	const color50 = colorconv.HEX2HSL(hex)
 	let pallette = materialpalette({ h: color50[0], s: color50[1], l: color50[2] })
-
 	Object.keys(pallette).map(color => {
 		const { h, s, l } = pallette[color]
 		pallette[color] = '#' + colorconv.HSL2HEX([h, s, l])
@@ -36,43 +35,81 @@ const color = createMuiTheme({
 		useNextVariants: true
 	}
 }).palette
-export default color
 
-/*
-export const white = '#EFF2F7'
-export const white_pastel = '#EFF2F7'
-// export const white_pastel = '#F5F5F5'
-export const white_pastel_transp ='rgba(245, 245, 245,.8)'
-// export const dark_blue = '#101727' início
-export const dark_blue = '#282a2d'
-// export const brown = '#707070'
-export const brown = '#383a3e'
-// export const dark_blue = '#272a3b'
-export const brown_blue = '#282a2d'
-export const black = '#383a3e'
+const lightBackground = '#F0F0F2'
+const darkBackground = '#313536'
 
-export const gray_secondary= '#929498'
-export const white_transp = '#41444a' //rgba(255, 255, 255, 0.15)'
-export const orange = '#F5706C'
-export const green = '#49BEAD'
-export const red= '#ED7176'
-export const gray = '#2D3239'
+const lowContrastLight = '#DCE3E4'
+const lowContrastDark = '#535A5C'
 
-export const primaryLightColor = '#5c5c5c'
+const placeholderLight = '#D4DCDD'
 
-export const primaryDarkColor = '#0c0c0c'
-export const secondaryLightColor = '#5ca9ff'
-export const secondaryDarkColor = '#004f9b'
+const contrastLight = lowContrastDark
+const contrastDark = lowContrastLight
+const highContrastLight = darkBackground
+const highContrastDark = lightBackground
 
-export const primaryTextColor = '#ffffff'
-export const secondaryTextColor = '#ffffff'
+//Denotative Colors
+const error = '#D43B3B'
+const success = '#2FD6B4'
+const disabledLight = '#BABABC'
+const disabledDark = '#626667'
 
-let styled = {
-    primary: {
-      '-1': "asd",
-      0: '#fff',
-      1: '#f1',
-      2:'#f1dsd',
-    }
-  }
-*/
+
+// https://coolors.co/313536-468189-fca311-007acc-f0f0f2
+
+const newColor = {
+	primary: (degree = 0) => {
+		const palette = {
+			'-2': '#00385D',
+			'-1': '#0064A7',
+			'0': '#007ACC',
+			'1': '#2E92D5',
+			'2': '#5CAADE'
+		}
+		return palette[degree]
+	},
+	secondary: (degree = 0) => {
+		const palette = {
+			'-2': '#28AC91',
+			'-1': '#2CBFA1',
+			'0': '#CF860E',
+			'1': '#42D6B8',
+			'2': '#55DABF'
+		}
+		return palette[degree]
+	},
+	light: {
+		background: lightBackground,
+		contrast: contrastLight,
+		lowContrast: lowContrastLight,
+		highContrast: highContrastLight,
+		disabled: disabledLight,
+		placeholder: placeholderLight
+	},
+	dark: {
+		background: darkBackground,
+		contrast: contrastDark,
+		lowContrast: lowContrastDark,
+		highContrast: highContrastDark,
+		disabled: disabledDark
+	},
+	interactive: degree => {
+		const palette = {
+			'-2': '#0F4F79',
+			'-1': '#215F94',
+			'0': '#298ED0',
+			'1': '#62ACE1',
+			'2': '#87C2EB'
+		}
+		return palette[degree]
+	},
+	error,
+	success
+}
+
+const theme = {
+	color: newColor
+}
+
+export { newColor, color as default, theme }

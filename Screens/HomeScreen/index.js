@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
-import { View, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-// import { connect } from 'react-redux'
-import { FontAwesome } from '@expo/vector-icons'
-import color from 'src/utils/colors'
-import EventItem from 'src/components/EventItem'
-import { Loading } from 'src/components/Layout'
 import { graphql } from 'react-apollo'
 import { getEventsQuery } from 'src/queries/queries'
+import { View, StyleSheet, FlatList } from 'react-native'
+
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import { mapStyle } from 'src/utils/api'
+import { Loading } from 'src/components/Layout'
+import color, { newColor } from 'src/utils/colors'
+import EventItem from './EventItem'
+import googleMapsStyle from './googleMapsStyle'
+import SearchPlaces from 'src/components/SearchPlaces'
 
 class HomeScreen extends Component {
 	state = {
-		searchText: ''
+		region: {
+			latitude: -22.911098,
+			longitude: -43.236292,
+			latitudeDelta: 0.0122,
+			longitudeDelta: 0.0122
+		}
 	}
 
 	render() {
@@ -20,38 +25,24 @@ class HomeScreen extends Component {
 			return <Loading />
 		}
 		const events = this.props.data.events
+		const { region } = this.state
+		console.log(region)
 		return (
 			<View style={{ flex: 1 }}>
-				{this.props.search && (
-					<View style={styles.container}>
-						<TouchableOpacity style={{ paddingLeft: 5, paddingRight: 10 }}>
-							<FontAwesome color={color.primary.contrastText} name="search" size={28} />
-						</TouchableOpacity>
-						<View style={{ flexGrow: 99 }}>
-							<TextInput
-								style={styles.textInput}
-								onChangeText={searchText => this.setState({ searchText })}
-								value={this.state.searchText}
-								placeholder={'Aonde Deus quer te levar agora ?'}
-								placeholderTextColor={color.primary.contrastText}
-								underlineColorAndroid={'transparent'}
-								keyboardAppearance={'dark'}
-								textContentType={'addressCityAndState'}
-							/>
-						</View>
-					</View>
-				)}
+				{true && <SearchPlaces onSelectRegion={region => this.setState({region})} />}
 
 				<MapView
-					initialRegion={{
-						latitude: -22.911098,
-						longitude: -43.236292,
-						latitudeDelta: 0.0122,
-						longitudeDelta: 0.0122
-					}}
+					// initialRegion={{
+					// 	latitude: -22.911098,
+					// 	longitude: -43.236292,
+					// 	latitudeDelta: 0.0122,
+					// 	longitudeDelta: 0.0122
+					// }}
+					region={region}
 					provider={PROVIDER_GOOGLE}
 					style={{ flex: 1, flexGrow: 1 }}
-					customMapStyle={mapStyle}
+					customMapStyle={googleMapsStyle}
+					showsUserLocation={true}
 				/>
 				<View style={styles.flatContainer}>
 					<FlatList
@@ -78,7 +69,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 25,
 		alignContent: 'space-between',
 		alignItems: 'center',
-		// backgroundColor: white_transp,
 		height: 50,
 		marginBottom: 15,
 		padding: 5
@@ -89,10 +79,8 @@ const styles = StyleSheet.create({
 		paddingVertical: 10
 	},
 	flatContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
+		backgroundColor: newColor.light.background,
+		elevation: 2,
 		height: 300 //window.height - 330,
 	}
 })

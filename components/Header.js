@@ -1,8 +1,9 @@
 import React from 'react'
-import color from '../utils/colors'
+import { newColor } from '../utils/colors'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-// import { withNavigation } from 'react-navigation'
+import styled from 'styled-components'
+import { Space } from 'src/components/Layout'
 
 class Header extends React.Component {
 	componentDidMount = () => {
@@ -28,20 +29,17 @@ class Header extends React.Component {
 	render() {
 		const { notificationCount } = this.state
 		return (
-			<View style={styles.container}>
-				<TouchableOpacity
-					style={styles.padding5}
-					onPress={() => this.props.navigation.openDrawer()}
-				>
-					<FontAwesome size={28} color={color.primary.contrastText} name="bars" />
-				</TouchableOpacity>
+			<Container>
+				<Button onPress={() => this.props.navigation.openDrawer()}>
+					<FontAwesome size={28} color={newColor.dark.contrast} name="bars" />
+				</Button>
 
-				<View style={styles.padding5}>
+				<Space p={5}>
 					<Image source={require('../assets/logo/logo_sm_white.png')} />
-				</View>
+				</Space>
 
-				<TouchableOpacity style={styles.padding5} onPress={() => this.goToNotification()}>
-					<FontAwesome size={28} color={color.primary.contrastText} name="bell-o" />
+				<Button onPress={() => this.goToNotification()}>
+					<FontAwesome size={28} color={newColor.dark.contrast} name="bell-o" />
 
 					{notificationCount > 0 ? (
 						<View
@@ -55,17 +53,31 @@ class Header extends React.Component {
 								borderRadius: 20,
 								alignItems: 'center',
 								justifyContent: 'center',
-								backgroundColor: color.secondary.main
+								backgroundColor: newColor.secondary()
 							}}
 						>
-							<Text style={{ color: color.primary.contrastText }}>{notificationCount}</Text>
+							<Text style={{ color: newColor.light.contrast }}>{notificationCount}</Text>
 						</View>
 					) : null}
-				</TouchableOpacity>
-			</View>
+				</Button>
+			</Container>
 		)
 	}
 }
+
+const Button = styled.TouchableOpacity`
+	padding: 5px;
+`
+
+const Container = styled.View`
+	padding: 30px 23px 10px 23px;
+	margin: 0px;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: ${({ theme }) => theme.color.primary()};
+	border-bottom-color: ${({ theme }) => theme.color.secondary()};
+	border-bottom-width: 2px;
+`
 
 const styles = StyleSheet.create({
 	container: {
@@ -76,9 +88,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		padding: -5,
-		backgroundColor: color.primary.main,
-		borderBottomColor: color.secondary.main,
-		borderBottomWidth: 1
+		backgroundColor: newColor.primary(),
+		borderBottomColor: newColor.secondary(),
+		borderBottomWidth: 2
 	},
 	padding5: {
 		padding: 5
@@ -97,7 +109,7 @@ export const StackNavigatorConfig = withHeader => {
 	return {
 		cardStyle: {
 			flex: 1,
-			backgroundColor: color.primary.main
+			backgroundColor: newColor.light.background
 		},
 		defaultNavigationOptions
 	}

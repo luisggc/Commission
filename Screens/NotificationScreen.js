@@ -1,17 +1,15 @@
 import React from 'react'
 import { View, StyleSheet, Text, FlatList } from 'react-native'
-import Card from 'src/components/Card'
-import { TextApp, ThumbImage, ButtonApp } from 'src/components/Layout'
+import { TextApp, ThumbImage, ButtonApp, Separator, Card } from 'src/components/Layout'
 import { StackNavigatorConfig } from 'src/components/Header'
 import { createStackNavigator } from 'react-navigation'
-import { Separator } from 'src/components/Layout'
 
 const Notification = props => {
 	const { title, eventName, icon, time } = props.item
 	return (
 		<View style={{ flex: 1, flexDirection: 'row' }}>
 			<View>
-				<ThumbImage image={icon} small />
+				<ThumbImage source={icon} small />
 			</View>
 			<View style={{ flex: 1, flexDirection: 'column' }}>
 				<View style={styles.topView}>

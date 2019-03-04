@@ -1,17 +1,21 @@
 import React from 'react'
-import color from '../utils/colors'
+import { newColor } from 'src/utils/colors'
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { TextApp, Separator } from './Layout'
+import TextApp from './TextApp'
+import Separator from './Separator'
 import { withNavigation } from 'react-navigation'
 
 const Card = props => {
 	const pad = props.padding ? { paddingHorizontal: 23, paddingTop: 15 } : {}
-	const { style, navigation, children, headerTitle, goTo} = props
+	const { style, navigation, children, headerTitle, goTo } = props
 	return (
 		<ScrollView contentContainerStyle={[style, styles.container, pad]}>
-			<TouchableOpacity onPress={() => goTo ? navigation.navigate(goTo) : navigation.goBack(null)} style={styles.backButton}>
-				<Ionicons style={{ color: color.primary.contrastText }} size={40} name="ios-arrow-back" />
+			<TouchableOpacity
+				onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
+				style={styles.backButton}
+			>
+				<Ionicons style={{ color: newColor.light.contrast }} size={40} name="ios-arrow-back" />
 			</TouchableOpacity>
 
 			{headerTitle ? (
@@ -32,8 +36,6 @@ const styles = StyleSheet.create({
 	container: {
 		paddingTop: 5,
 		paddingBottom: 10,
-		marginHorizontal: 8,
-		backgroundColor: color.primary['400'],
 		flexGrow: 1
 	},
 	backButton: {

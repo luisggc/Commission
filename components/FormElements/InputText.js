@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import color from '../../utils/colors'
+import { newColor } from '../../utils/colors'
 import InputFormat from './InputFormat'
 
 export default function InputText(props) {
@@ -12,7 +12,7 @@ export default function InputText(props) {
 				style={styles.textInput}
 				// value={this.state.searchText}
 				placeholder={'Ex: ' + placeholder}
-				placeholderTextColor={color.primary.contrastLightText}
+				placeholderTextColor={newColor.light.placeholder}
 				underlineColorAndroid={'transparent'}
 				keyboardAppearance={'dark'}
 				{...props}
@@ -23,7 +23,7 @@ export default function InputText(props) {
 
 const styles = StyleSheet.create({
 	textInput: {
-		color: color.primary.contrastText,
+		color: newColor.light.contrast,
 		fontSize: 15
 	}
 })
