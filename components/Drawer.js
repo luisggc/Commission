@@ -69,3 +69,8 @@ const styles = StyleSheet.create({
 		elevation: 1
 	}
 })
+
+export const drawerNavigatorConfig = () => ({
+	drawerBackgroundColor: newColor.primary(-1),
+	contentComponent: CustomDrawerContentComponent
+})
