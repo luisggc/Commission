@@ -1,8 +1,8 @@
 import React from 'react'
-import color, { newColor } from '../utils/colors'
+import { newColor } from 'src/utils/colors'
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { TextApp, Separator } from './Layout'
+import { TextApp, Separator } from '.'
 import { withNavigation } from 'react-navigation'
 
 const Card = props => {
@@ -14,11 +14,7 @@ const Card = props => {
 				onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
 				style={styles.backButton}
 			>
-				<Ionicons
-					style={{ color: newColor.light.contrast }}
-					size={40}
-					name="ios-arrow-back"
-				/>
+				<Ionicons style={{ color: newColor.light.contrast }} size={40} name="ios-arrow-back" />
 			</TouchableOpacity>
 
 			{headerTitle ? (

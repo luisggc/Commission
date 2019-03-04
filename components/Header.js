@@ -3,7 +3,7 @@ import { newColor } from '../utils/colors'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import styled from 'styled-components'
-import { Space } from 'src/components'
+import { Space } from 'src/components/Layout'
 
 class Header extends React.Component {
 	componentDidMount = () => {

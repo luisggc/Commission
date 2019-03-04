@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import Card from 'src/components/Card'
+import {Card} from 'src/components/Layout'
 import { TextApp, ThumbImage, Li, Separator, ButtonApp, Loading } from 'src/components/Layout'
 import { getEventQuery } from 'src/queries/queries'
 import { graphql } from 'react-apollo'

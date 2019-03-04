@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import Card from 'src/components/Card'
-import { TextApp, ThumbImage, Li } from 'src/components/Layout'
+import { TextApp, ThumbImage, Li, Card } from 'src/components/Layout'
 
 class ProfileScreen extends React.Component {
 	state = {
