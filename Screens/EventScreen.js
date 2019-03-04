@@ -19,7 +19,7 @@ class EventScreen extends React.Component {
 		const { id, name, host, description, user, assistances } = this.props.data.event
 		return (
 			<Card padding>
-				<ThumbImage image={require('../assets/images/user.jpg')} />
+				<ThumbImage source={require('../assets/images/user.jpg')} />
 				<View style={styles.statusContainer}>
 					<TextApp style={{ fontSize: 16 }}>{name}</TextApp>
 					<TextApp style={styles.description} secondary>

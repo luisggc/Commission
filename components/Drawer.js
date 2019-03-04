@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
-import { DrawerItems, SafeAreaView } from 'react-navigation'
+import { SafeAreaView } from 'react-navigation'
 import { ThumbImage, TextApp } from './Layout'
-import color from '../utils/colors'
+import { newColor } from '../utils/colors'
 import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {
@@ -10,17 +10,17 @@ export default (CustomDrawerContentComponent = props => {
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>
-				<EvilIcons style={{ color: color.primary.contrastLightText }} size={40} name="close" />
+				<EvilIcons style={{ color: newColor.light.contrast }} size={40} name="close" />
 			</TouchableOpacity>
 			<View style={styles.thumbImageContainer}>
-				<ThumbImage image={require('../assets/images/user.jpg')} />
+				<ThumbImage source={require('../assets/images/user.jpg')} />
 				<View style={styles.statusContainer}>
-					<TextApp>Luis Coimbra</TextApp>
+					<TextApp dark>Luis Coimbra</TextApp>
 					<TextApp secondary>Apaixonado por Jesus</TextApp>
 				</View>
 			</View>
 			<SafeAreaView
-				style={{ flex: 1, borderTopWidth: 2, borderTopColor: color.primary.contrastText }}
+				style={{ flex: 1, borderTopWidth: 2, borderTopColor: newColor.dark.contrast }}
 				forceInset={{ top: 'always', horizontal: 'never' }}
 			>
 				{['Início', 'Perfil', 'Notificações', 'Criar Evento'].map(routerName => (
@@ -30,8 +30,8 @@ export default (CustomDrawerContentComponent = props => {
 							style={{
 								color:
 									routerName == activeRouterName
-										? color.secondary.main
-										: color.primary.contrastText,
+										? newColor.secondary()
+										: newColor.dark.contrast,
 								margin: 16,
 								fontWeight: 'bold'
 							}}
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
 	},
 	activeView: {
 		borderTopWidth: 2,
-		// borderTopColor: color.primary.contrastText,
 		borderTopColor: 'transparent',
 		shadowOffset: { width: 0, height: 2 },
 		shadowColor: 'black',
@@ -70,17 +69,3 @@ const styles = StyleSheet.create({
 		elevation: 1
 	}
 })
-
-const itemsStyle = {
-	itemsContainerStyle: {
-		borderTopWidth: 2,
-		borderTopColor: color.primary.contrastText,
-		shadowOffset: { width: 0, height: 2 },
-		elevation: 2,
-		shadowColor: 'black',
-		shadowOpacity: 0.3
-	},
-	activeTintColor: color.secondary.main,
-	activeBackgroundColor: color.primary.main,
-	inactiveTintColor: color.primary.contrastText
-}

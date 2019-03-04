@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar, StyleSheet, View } from 'react-native'
 import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
-import Drawer from './components/Drawer'
+import { drawerNavigatorConfig } from './components/Drawer'
 import HomeScreen from './Screens/HomeScreen'
 import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
@@ -15,7 +15,7 @@ import { ThemeProvider } from 'styled-components'
 
 const client = new ApolloClient({
 	//Doesn't work outside you emulator
-	uri: 'http://192.168.0.15:4000/graphql'
+	uri: 'http://192.168.0.11:4000/graphql'
 })
 
 const AppStackNavigator = createStackNavigator(
@@ -37,13 +37,7 @@ const AppStackNavigator = createStackNavigator(
 	StackNavigatorConfig()
 )
 
-const AppNavigator = createDrawerNavigator(
-	{ AppStackNavigator },
-	{
-		contentComponent: Drawer,
-		drawerBackgroundColor: color.primary.main
-	}
-)
+const AppNavigator = createDrawerNavigator({ AppStackNavigator }, drawerNavigatorConfig())
 
 const AppContainer = createAppContainer(AppNavigator)
 

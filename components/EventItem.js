@@ -10,7 +10,7 @@ class EventItem extends React.Component {
 			<TouchableOpacity onPress={onJoin}>
 				<View style={styles.container}>
 					<View style={styles.containerIcon}>
-						<ThumbImage small image={require('../assets/images/user.jpg')} />
+						<ThumbImage small source={require('../assets/images/user.jpg')} />
 					</View>
 					<View style={styles.containerInfo}>
 						<View style={{ flex: 1 }}>

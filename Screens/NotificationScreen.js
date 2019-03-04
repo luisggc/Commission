@@ -9,7 +9,7 @@ const Notification = props => {
 	return (
 		<View style={{ flex: 1, flexDirection: 'row' }}>
 			<View>
-				<ThumbImage image={icon} small />
+				<ThumbImage source={icon} small />
 			</View>
 			<View style={{ flex: 1, flexDirection: 'column' }}>
 				<View style={styles.topView}>
