@@ -1,7 +1,6 @@
 import React from 'react'
-import color, { newColor } from '../utils/colors'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { TextApp, ThumbImage } from './Layout'
+import { TextApp, ThumbImage } from '../../components/Layout'
 
 class EventItem extends React.Component {
 	render() {
@@ -10,7 +9,7 @@ class EventItem extends React.Component {
 			<TouchableOpacity onPress={onJoin}>
 				<View style={styles.container}>
 					<View style={styles.containerIcon}>
-						<ThumbImage small source={require('../assets/images/user.jpg')} />
+						<ThumbImage small source={require('src/assets/images/user.jpg')} />
 					</View>
 					<View style={styles.containerInfo}>
 						<View style={{ flex: 1 }}>
@@ -49,17 +48,6 @@ const styles = StyleSheet.create({
 	},
 	containerIcon: {
 		margin: 12
-	},
-	button: {
-		padding: 10,
-		backgroundColor: color.secondary.main,
-		borderBottomLeftRadius: 5,
-		borderTopLeftRadius: 5
-	},
-	sep: {
-		height: 1,
-		backgroundColor: color.primary.main,
-		marginHorizontal: 30
 	}
 })
 

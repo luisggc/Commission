@@ -1,11 +1,8 @@
-import color, { newColor } from './colors'
-
-// const background = newColor.light.background //colorNew.primary(2)  //color.primary.light
-// const lowContrast = newColor.light.lowContrast //colorNew.primary(2) //color.primary['400']
+import { newColor } from '../../utils/colors'
 
 const { lowContrast, background } = newColor.light
 
-export const mapStyle = [
+export default mapStyle = [
 	{
 		featureType: 'all',
 		elementType: 'labels.text.fill',
