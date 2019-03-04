@@ -2,7 +2,8 @@ import React from 'react'
 import { newColor } from 'src/utils/colors'
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { TextApp, Separator } from '.'
+import TextApp from './TextApp'
+import Separator from './Separator'
 import { withNavigation } from 'react-navigation'
 
 const Card = props => {

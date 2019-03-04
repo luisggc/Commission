@@ -1,32 +1,29 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { TextApp } from '.'
-import { newColor } from 'src/utils/colors'
+import TextApp from './TextApp'
+import styled from 'styled-components'
 
-export default Li = ({ style, items = [] }) => {
+const Li = ({ items = [] }) => {
 	return items.map((item, index) => {
-		const stylec = index == 0 ? style : {}
 		return (
-			<View key={index} style={[styles.liContainer, stylec]}>
-				<View style={styles.liIcon} />
+			<LiContainer key={index}>
+				<LiIcon />
 				<TextApp>{item}</TextApp>
-			</View>
+			</LiContainer>
 		)
 	})
 }
 
-const styles = StyleSheet.create({
-	liIcon: {
-		backgroundColor: newColor.primary(),
-		height: 6,
-		width: 6,
-		marginRight: 8,
-		alignSelf: 'center'
-	},
-	liContainer: {
-		flexDirection: 'row',
-		alignSelf: 'flex-start'
-		// alignItems: 'center',
-		// justifyContent: 'center'
-	}
-})
+export default Li
+
+const LiIcon = styled.View`
+	background-color: ${({ theme }) => theme.color.primary()};
+	height: 6px;
+	width: 6px;
+	margin-right: 8px;
+	align-self: center;
+`
+
+const LiContainer = styled.View`
+	flex-direction: row;
+	align-self: flex-start;
+`

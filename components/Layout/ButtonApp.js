@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
-import { TextApp } from '.'
+import TextApp from './TextApp'
 
 export const ButtonAppOnly = styled.TouchableOpacity`
 	min-width: 90;
@@ -10,7 +10,7 @@ export const ButtonAppOnly = styled.TouchableOpacity`
 	background-color: ${p => (p.primary ? p.theme.color.primary() : p.theme.color.secondary(0))};
 `
 
-export default ButtonApp = props => {
+export default (ButtonApp = props => {
 	const { text, children, ...buttonProps } = props
 	const textProps = text ? text : { dark: true }
 	return (
@@ -18,4 +18,4 @@ export default ButtonApp = props => {
 			<TextApp {...textProps}>{children}</TextApp>
 		</ButtonAppOnly>
 	)
-}
+})
