@@ -55,7 +55,6 @@ const success = '#2FD6B4'
 const disabledLight = '#BABABC'
 const disabledDark = '#626667'
 
-
 // https://coolors.co/313536-468189-fca311-007acc-f0f0f2
 
 const newColor = {
@@ -94,7 +93,7 @@ const newColor = {
 		highContrast: highContrastDark,
 		disabled: disabledDark
 	},
-	interactive: degree => {
+	interactive: (degree = 0) => {
 		const palette = {
 			'-2': '#0F4F79',
 			'-1': '#215F94',

@@ -13,7 +13,14 @@ Por que hoje não fazemos o mesmo ?
 
 Integrar cristãos sinceros que se disponibilizam à ceder moradia e benefícios a missionários por tempo determinado para pregação do evangelho em sua localidade.
 
-# ReactJS README.md
+## Requisitos:
+Dentro da pasta Utils você deve acrescentar um arquivo chamado "credentials.js" e exportar sua chave secreta do google:
+
+```javascript
+export default GOOGLE_MAPS_API = 'SUA_CHAVE_SECRETA'
+```
+
+# ReactNative README.md
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 

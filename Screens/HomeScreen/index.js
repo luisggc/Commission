@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import { getEventsQuery } from 'src/queries/queries'
-import { View, StyleSheet, FlatList } from 'react-native'
-
+import { View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import { Loading } from 'src/components/Layout'
-import color, { newColor } from 'src/utils/colors'
-import EventItem from './EventItem'
 import googleMapsStyle from './googleMapsStyle'
 import SearchPlaces from 'src/components/SearchPlaces'
+import EventItems from './EventItems'
 
 class HomeScreen extends Component {
 	state = {
@@ -21,15 +16,11 @@ class HomeScreen extends Component {
 	}
 
 	render() {
-		if (this.props.data.loading) {
-			return <Loading />
-		}
-		const events = this.props.data.events
 		const { region } = this.state
 		console.log(region)
 		return (
 			<View style={{ flex: 1 }}>
-				{true && <SearchPlaces onSelectRegion={region => this.setState({region})} />}
+				{true && <SearchPlaces onSelectRegion={region => this.setState({ region })} />}
 
 				<MapView
 					// initialRegion={{
@@ -44,48 +35,13 @@ class HomeScreen extends Component {
 					customMapStyle={googleMapsStyle}
 					showsUserLocation={true}
 				/>
-				<View style={styles.flatContainer}>
-					<FlatList
-						data={events}
-						navigation={this.props.navigation}
-						keyExtractor={item => item.id}
-						renderItem={({ item }) => (
-							<EventItem
-								{...item}
-								onJoin={() => this.props.navigation.navigate('EventScreen', item)}
-							/>
-						)}
-					/>
-					{/* </LinearGradient> */}
-				</View>
+				<EventItems navigation={this.props.navigation} />
 			</View>
 		)
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		marginHorizontal: 25,
-		alignContent: 'space-between',
-		alignItems: 'center',
-		height: 50,
-		marginBottom: 15,
-		padding: 5
-	},
-	textInput: {
-		color: color.primary.contrastText,
-		fontSize: 15,
-		paddingVertical: 10
-	},
-	flatContainer: {
-		backgroundColor: newColor.light.background,
-		elevation: 2,
-		height: 300 //window.height - 330,
-	}
-})
-
-export default graphql(getEventsQuery)(HomeScreen)
+export default HomeScreen
 
 // createStackNavigator(
 // 	{
