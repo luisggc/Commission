@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export default TextApp = styled.Text`
+export default (TextApp = styled.Text`
 	color: ${p =>
 		p.primary
 			? p.theme.color.primary(0)
@@ -20,8 +20,10 @@ export default TextApp = styled.Text`
 			? p.theme.color.light.highContrast
 			: p.disabled
 			? p.theme.color.light.disabled
+			: p.placeholder
+			? p.theme.color.light.placeholder
 			: p.theme.color.light.contrast};
-`
+`)
 
 // ${p => p.primary ? p.theme.color.primary(0):
 // 	p.secondary ? p.theme.color.secondary(0):

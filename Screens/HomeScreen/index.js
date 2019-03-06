@@ -55,54 +55,10 @@ class HomeScreen extends Component {
 					customMapStyle={googleMapsStyle}
 					showsUserLocation={true}
 				/>
-				<EventItems navigation={this.props.navigation} />
+				<EventItems myLocation={region} navigation={this.props.navigation} />
 			</View>
 		)
 	}
 }
 
 export default HomeScreen
-
-// createStackNavigator(
-// 	{
-// 		Home: {
-// 			screen: graphql(getEventsQuery)(HomeScreen)
-// 		},
-// 		EventScreen: {
-// 			screen: EventScreen
-// 		}
-// 	},
-// 	StackNavigatorConfig
-// )
-
-// const events = [
-// 	{
-// 		name: 'Evangelismo nas Ruas',
-// 		host:
-// 			'Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica',
-// 		description: 'Buscar evangelismo em praças próximo à igreja',
-// 		id: '1',
-// 		userId: '1'
-// 	},
-// 	{
-// 		name: 'Pregação na Praça',
-// 		host: 'Igreja Assembléia de Deus',
-// 		description: 'Pregação em praça próxima',
-// 		id: '2',
-// 		userId: '2'
-// 	},
-// 	{
-// 		name: 'Doar agasalhos',
-// 		host: 'CRU',
-// 		description: 'Evangelismo nas universidades',
-// 		id: '3',
-// 		userId: '3'
-// 	},
-// 	{
-// 		name: 'Dar treinamentos',
-// 		host: 'Pais',
-// 		description: 'Aprendizado infanto-juvenil em escolas',
-// 		id: '4',
-// 		userId: '2'
-// 	}
-// ]

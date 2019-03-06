@@ -30,7 +30,12 @@ class EventItems extends Component {
 		if (this.props.data.loading) {
 			return <Loading />
 		}
-		const { events } = this.props.data
+
+		const {
+			data: { events },
+			myLocation
+		} = this.props
+
 		return (
 			<Animated.View style={[styles.flatContainer, { height: this.height }]}>
 				<View style={styles.draggable} {...this.panResponder.panHandlers}>
@@ -42,6 +47,7 @@ class EventItems extends Component {
 					keyExtractor={item => item.id}
 					renderItem={({ item }) => (
 						<EventItem
+							myLocation={ myLocation }
 							{...item}
 							onJoin={() => this.props.navigation.navigate('EventScreen', item)}
 						/>
@@ -82,3 +88,35 @@ const styles = StyleSheet.create({
 		zIndex: 4
 	}
 })
+
+// const events = [
+// 	{
+// 		name: 'Evangelismo nas Ruas',
+// 		host:
+// 			'Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica',
+// 		description: 'Buscar evangelismo em praças próximo à igreja',
+// 		id: '1',
+// 		userId: '1'
+// 	},
+// 	{
+// 		name: 'Pregação na Praça',
+// 		host: 'Igreja Assembléia de Deus',
+// 		description: 'Pregação em praça próxima',
+// 		id: '2',
+// 		userId: '2'
+// 	},
+// 	{
+// 		name: 'Doar agasalhos',
+// 		host: 'CRU',
+// 		description: 'Evangelismo nas universidades',
+// 		id: '3',
+// 		userId: '3'
+// 	},
+// 	{
+// 		name: 'Dar treinamentos',
+// 		host: 'Pais',
+// 		description: 'Aprendizado infanto-juvenil em escolas',
+// 		id: '4',
+// 		userId: '2'
+// 	}
+// ]
