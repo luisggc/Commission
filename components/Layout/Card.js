@@ -19,7 +19,7 @@ const Card = props => {
 	const { style, navigation, children, headerTitle, goTo } = props
 	return (
 		<KeyboardAvoidingView behavior={'position'} style={{ flex: 1 }} keyboardVerticalOffset={40}>
-			<ScrollView contentContainerStyle={[style, styles.container, pad]}>
+			<ScrollView contentContainerStyle={[style, styles.container, pad]} nestedScrollEnabled>
 				<TouchableOpacity
 					onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
 					style={styles.backButton}

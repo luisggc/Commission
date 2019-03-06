@@ -10,7 +10,12 @@ export default props => (
 				<TextApp>{props.name}:</TextApp>
 			</View>
 		) : null}
-		<View style={styles.textInputContainer}>
+		<View
+			style={[
+				styles.textInputContainer,
+				props.noBorder && { borderWidth: 0, marginTop: 0, padding: 0 }
+			]}
+		>
 			<View style={{ flexGrow: 1 }}>{props.children}</View>
 		</View>
 	</View>

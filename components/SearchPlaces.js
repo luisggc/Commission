@@ -101,6 +101,7 @@ export default class SearchPlaces extends Component {
 				{places.length > 0 && (
 					<ContainerPlaces>
 						<FlatList
+							nestedScrollEnabled
 							data={places}
 							renderItem={({ item }) => (
 								<Place getDetailsPlace={this.getDetailsPlace} key={item.id} {...item} />
@@ -154,11 +155,11 @@ const ContainerMargin = styled.View`
 		p.float &&
 		`
 			position: absolute;
-			display: flex;
 			top: 25;
 			width: 100%;
 			padding: 0 10px;
-			elevation: 6;
-			z-index: 6;
 	`}
+	display: flex;
+	elevation: 6;
+	z-index: 6;
 `
