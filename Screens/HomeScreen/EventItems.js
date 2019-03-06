@@ -10,13 +10,13 @@ import styled from 'styled-components'
 class EventItems extends Component {
 	constructor(props) {
 		super(props)
-		this.state = { lastHeight: 50 }
+		this.state = { lastHeight: 50, initialAnimation: false }
 		this.height = new Animated.Value(50)
 		this.panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: () => true,
+			onStartShouldSetPanResponder: () => !this.props.data.loading,
 			onPanResponderMove: (event, gesture) => {
 				const newHeight = this.state.lastHeight - gesture.dy
-				if (newHeight > 35) {
+				if (newHeight > 35 && !this.props.data.loading) {
 					this.height.setValue(newHeight)
 				}
 			},
@@ -26,16 +26,32 @@ class EventItems extends Component {
 		})
 	}
 
+	componentDidUpdate() {
+		//Run initial animation
+		if (!this.props.data.loading && !this.state.initialAnimation) {
+			const newHeight = 0.4 * Dimensions.get('window').height
+			Animated.spring(this.height, { toValue: newHeight, speed: 12 }).start()
+			this.setState({
+				lastHeight: newHeight,
+				initialAnimation: true
+			})
+		}
+	}
+
 	render() {
 		if (this.props.data.loading) {
-			return <Loading />
+			return (
+				<Animated.View style={[styles.flatContainer, { height: this.height }]}>
+					<Loading />
+				</Animated.View>
+			)
 		}
 
 		const {
 			data: { events },
 			myLocation
 		} = this.props
-
+		
 		return (
 			<Animated.View style={[styles.flatContainer, { height: this.height }]}>
 				<View style={styles.draggable} {...this.panResponder.panHandlers}>
@@ -47,7 +63,7 @@ class EventItems extends Component {
 					keyExtractor={item => item.id}
 					renderItem={({ item }) => (
 						<EventItem
-							myLocation={ myLocation }
+							myLocation={myLocation}
 							{...item}
 							onJoin={() => this.props.navigation.navigate('EventScreen', item)}
 						/>

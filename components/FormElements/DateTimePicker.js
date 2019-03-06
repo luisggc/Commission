@@ -37,7 +37,7 @@ export default class DateTimePickerApp extends React.Component {
 					locale={'pt-BR'}
 					cancelTextIOS={'Cancelar'}
 					confirmTextIOS={'Confirmar'}
-					titleIOS={'Seleione uma data e hora'}
+					titleIOS={'Selecione uma data e hora'}
 				/>
 			</View>
 		)
