@@ -20,7 +20,6 @@ function CreateEventScreen(props) {
 	const { values, touched, errors, handleChange, handleBlur, setFieldValue, handleSubmit } = props
 	return (
 		<Card headerTitle={'Faça a diferença !'} padding>
-			<SafeAreaView>
 				<ChooseIcon name="Selecione um ícone" />
 				<InputText
 					name="Título do Evento"
@@ -87,7 +86,6 @@ function CreateEventScreen(props) {
 				<ButtonApp onPress={() => sendForm(errors, handleSubmit)} style={styles.button}>
 					Enviar !
 				</ButtonApp>
-			</SafeAreaView>
 		</Card>
 	)
 }

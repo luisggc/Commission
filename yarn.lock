@@ -6000,6 +6000,10 @@ react-native-jest-mocks@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-jest-mocks/-/react-native-jest-mocks-1.4.0.tgz#8380992bd4c1a533193d96f42dbf2e89bcfea617"
 
+react-native-keyboard-aware-scrollview@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scrollview/-/react-native-keyboard-aware-scrollview-2.0.0.tgz#a7e2cc31b7230893db5dc05eb6fed3f358500a55"
+
 react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"

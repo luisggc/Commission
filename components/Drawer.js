@@ -10,7 +10,7 @@ export default (CustomDrawerContentComponent = props => {
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>
-				<EvilIcons style={{ color: color.light.contrast }} size={40} name="close" />
+				<EvilIcons style={{ color: color.dark.contrast }} size={40} name="close" />
 			</TouchableOpacity>
 			<View style={styles.thumbImageContainer}>
 				<ThumbImage source={require('../assets/images/user.jpg')} />

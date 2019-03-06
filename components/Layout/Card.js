@@ -1,34 +1,44 @@
 import React from 'react'
 import { color } from 'src/utils/theme'
-import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+	ScrollView,
+	View,
+	StyleSheet,
+	TouchableOpacity,
+	KeyboardAvoidingView
+} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import TextApp from './TextApp'
 import Separator from './Separator'
 import { withNavigation } from 'react-navigation'
+import styled from 'styled-components'
 
 const Card = props => {
 	const pad = props.padding ? { paddingHorizontal: 23, paddingTop: 15 } : {}
+
 	const { style, navigation, children, headerTitle, goTo } = props
 	return (
-		<ScrollView contentContainerStyle={[style, styles.container, pad]}>
-			<TouchableOpacity
-				onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
-				style={styles.backButton}
-			>
-				<Ionicons style={{ color: color.light.contrast }} size={40} name="ios-arrow-back" />
-			</TouchableOpacity>
+		<KeyboardAvoidingView behavior={'position'} style={{ flex: 1 }} keyboardVerticalOffset={40}>
+			<ScrollView contentContainerStyle={[style, styles.container, pad]}>
+				<TouchableOpacity
+					onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
+					style={styles.backButton}
+				>
+					<Ionicons style={{ color: color.light.contrast }} size={40} name="ios-arrow-back" />
+				</TouchableOpacity>
 
-			{headerTitle ? (
-				<View>
-					<View style={styles.headerTitle}>
-						<TextApp style={{ fontSize: 25 }}>{headerTitle}</TextApp>
+				{headerTitle ? (
+					<View>
+						<View style={styles.headerTitle}>
+							<TextApp style={{ fontSize: 25 }}>{headerTitle}</TextApp>
+						</View>
+						<Separator style={{ marginBottom: 10 }} />
 					</View>
-					<Separator style={{ marginBottom: 10 }} />
-				</View>
-			) : null}
+				) : null}
 
-			<View>{children}</View>
-		</ScrollView>
+				<View>{children}</View>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	)
 }
 
