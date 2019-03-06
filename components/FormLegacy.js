@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { TextApp, ButtonApp, MultipleSelectApp } from './Layout'
 import { datetimeToString } from '../utils'
-import color from '../utils/theme'
+import { color } from '../utils/theme'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import ModalSelector from 'react-native-modal-selector'
 import ChooseIcon from './ChooseIcon'

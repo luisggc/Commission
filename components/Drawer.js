@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 import { ThumbImage, TextApp } from './Layout'
-import color from '../utils/theme'
+import { color } from '../utils/theme'
 import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {

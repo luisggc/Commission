@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextApp } from '../Layout'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 
 export default props => (
 	<View style={styles.columnContainer}>

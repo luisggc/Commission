@@ -19,7 +19,6 @@ const success = '#2FD6B4'
 const disabledLight = '#BABABC'
 const disabledDark = '#626667'
 
-
 const color = {
 	primary: (degree = 0) => {
 		const palette = {
@@ -74,4 +73,4 @@ const theme = {
 	color
 }
 
-export { color as default, theme }
+export { color, theme as default }

@@ -1,5 +1,5 @@
 import React from 'react'
-import color from '../utils/theme'
+import { color } from '../utils/theme'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import styled from 'styled-components'

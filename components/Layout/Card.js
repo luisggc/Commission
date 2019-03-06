@@ -1,5 +1,5 @@
 import React from 'react'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import TextApp from './TextApp'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 import InputFormat from 'src/components/FormElements/InputFormat'
 

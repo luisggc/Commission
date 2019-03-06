@@ -1,4 +1,4 @@
-import color from '../../utils/theme'
+import { color } from '../../utils/theme'
 
 const { lowContrast, background } = color.light
 

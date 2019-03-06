@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import color from '../../utils/theme'
+import { color } from '../../utils/theme'
 import InputFormat from './InputFormat'
 
 export default function InputText(props) {

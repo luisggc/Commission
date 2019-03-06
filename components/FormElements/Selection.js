@@ -1,6 +1,6 @@
 import React from 'react'
 import InputFormat from './InputFormat'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 import { StyleSheet, TextInput, Picker, Platform } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
 

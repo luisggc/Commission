@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { TextApp } from '../Layout'
 import { datetimeToString } from 'src/utils'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 
 export default class DateTimePickerApp extends React.Component {
 	state = { visible: false }

@@ -3,7 +3,7 @@ import EventItem from './EventItem'
 import { graphql } from 'react-apollo'
 import { View, StyleSheet, FlatList, Animated, Dimensions, PanResponder } from 'react-native'
 import { getEventsQuery } from 'src/queries/queries'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 import { Loading } from 'src/components/Layout'
 import styled from 'styled-components'
 

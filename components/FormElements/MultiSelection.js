@@ -1,6 +1,6 @@
 import React from 'react'
 import InputFormat from './InputFormat'
-import color from 'src/utils/theme'
+import { color } from 'src/utils/theme'
 import { TouchableOpacity } from 'react-native'
 import { TextApp } from 'src/components/Layout'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
