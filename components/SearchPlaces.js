@@ -25,7 +25,11 @@ export default class SearchPlaces extends Component {
 			return
 		}
 		this.setState({ search })
-		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API}&input=${search}&language=pt-br`
+		const { region } = this.props
+		const location = `${region.latitude},${region.longitude}`
+		const radius = '20000'
+		const language = 'pt-br'
+		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API}&input=${search}&language=${language}&radius=${radius}&location=${location}`
 		try {
 			const result = await fetch(url)
 			const json = await result.json()
@@ -36,6 +40,7 @@ export default class SearchPlaces extends Component {
 
 			this.setState({ places: places, error: false })
 		} catch {
+			console.log('erroooo')
 			this.setState({ error: true })
 		}
 	}
