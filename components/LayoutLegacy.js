@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Image, View, ActivityIndicator } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
-import color, { colorNew } from '../utils/colors'
+import color, { colorNew } from '../utils/theme'
 import styled from 'styled-components'
 
 

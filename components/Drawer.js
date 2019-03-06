@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 import { ThumbImage, TextApp } from './Layout'
-import { newColor } from '../utils/colors'
+import color from '../utils/theme'
 import { EvilIcons } from '@expo/vector-icons'
 
 export default (CustomDrawerContentComponent = props => {
@@ -10,7 +10,7 @@ export default (CustomDrawerContentComponent = props => {
 	return (
 		<ScrollView>
 			<TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.close}>
-				<EvilIcons style={{ color: newColor.light.contrast }} size={40} name="close" />
+				<EvilIcons style={{ color: color.light.contrast }} size={40} name="close" />
 			</TouchableOpacity>
 			<View style={styles.thumbImageContainer}>
 				<ThumbImage source={require('../assets/images/user.jpg')} />
@@ -20,7 +20,7 @@ export default (CustomDrawerContentComponent = props => {
 				</View>
 			</View>
 			<SafeAreaView
-				style={{ flex: 1, borderTopWidth: 2, borderTopColor: newColor.dark.contrast }}
+				style={{ flex: 1, borderTopWidth: 2, borderTopColor: color.dark.contrast }}
 				forceInset={{ top: 'always', horizontal: 'never' }}
 			>
 				{['Início', 'Perfil', 'Notificações', 'Criar Evento'].map(routerName => (
@@ -30,8 +30,8 @@ export default (CustomDrawerContentComponent = props => {
 							style={{
 								color:
 									routerName == activeRouterName
-										? newColor.secondary()
-										: newColor.dark.contrast,
+										? color.secondary()
+										: color.dark.contrast,
 								margin: 16,
 								fontWeight: 'bold'
 							}}
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
 })
 
 export const drawerNavigatorConfig = () => ({
-	drawerBackgroundColor: newColor.primary(-1),
+	drawerBackgroundColor: color.primary(-1),
 	contentComponent: CustomDrawerContentComponent
 })

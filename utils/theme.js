@@ -1,40 +1,4 @@
-// https://material.io/tools/color/#!/?view.left=1&view.right=1&secondary.color=007ACC&primary.color=333333&primary.text.color=ffffff&secondary.text.color=ffffff
-// https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-
-import { createMuiTheme } from '@material-ui/core/styles'
-import colorconv from './color_converter'
-import materialpalette from 'material-palette'
-
-function getPalette(hex) {
-	const color50 = colorconv.HEX2HSL(hex)
-	let pallette = materialpalette({ h: color50[0], s: color50[1], l: color50[2] })
-	Object.keys(pallette).map(color => {
-		const { h, s, l } = pallette[color]
-		pallette[color] = '#' + colorconv.HSL2HEX([h, s, l])
-		return
-	})
-	return pallette
-}
-
-const primaryColor = '#333333'
-const primaryPalette = getPalette(primaryColor)
-const primaryLightTextColor = primaryPalette['100'] //'#929498'
-const primaryLight0Color = primaryPalette['400'] //'#383A3D'
-const secondaryColor = '#007acc'
-
-const color = createMuiTheme({
-	palette: {
-		primary: {
-			main: primaryColor,
-			contrastLightText: primaryLightTextColor,
-			...primaryPalette
-		},
-		secondary: { main: secondaryColor }
-	},
-	typography: {
-		useNextVariants: true
-	}
-}).palette
+// https://coolors.co/313536-468189-fca311-007acc-f0f0f2
 
 const lightBackground = '#F0F0F2'
 const darkBackground = '#313536'
@@ -55,9 +19,8 @@ const success = '#2FD6B4'
 const disabledLight = '#BABABC'
 const disabledDark = '#626667'
 
-// https://coolors.co/313536-468189-fca311-007acc-f0f0f2
 
-const newColor = {
+const color = {
 	primary: (degree = 0) => {
 		const palette = {
 			'-2': '#00385D',
@@ -108,7 +71,7 @@ const newColor = {
 }
 
 const theme = {
-	color: newColor
+	color
 }
 
-export { newColor, color as default, theme }
+export { color as default, theme }

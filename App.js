@@ -5,7 +5,7 @@ import { drawerNavigatorConfig } from './components/Drawer'
 import HomeScreen from './Screens/HomeScreen'
 import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
-import color, { newColor, theme } from './utils/colors'
+import color, { theme } from './utils/theme'
 import CreateEventScreen from './Screens/CreateEventScreen'
 import EventScreen from './Screens/EventScreen'
 import { ApolloProvider } from 'react-apollo'
@@ -48,7 +48,7 @@ export default class App extends React.Component {
 				<ThemeProvider theme={theme}>
 					<View style={styles.container}>
 						<StatusBar
-							backgroundColor={newColor.light.background}
+							backgroundColor={color.light.background}
 							barStyle="light-content"
 							style={{ marginBottom: 30, paddingbottom: 40 }}
 						/>

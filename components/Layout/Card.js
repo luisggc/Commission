@@ -1,5 +1,5 @@
 import React from 'react'
-import { newColor } from 'src/utils/colors'
+import color from 'src/utils/theme'
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import TextApp from './TextApp'
@@ -15,7 +15,7 @@ const Card = props => {
 				onPress={() => (goTo ? navigation.navigate(goTo) : navigation.goBack(null))}
 				style={styles.backButton}
 			>
-				<Ionicons style={{ color: newColor.light.contrast }} size={40} name="ios-arrow-back" />
+				<Ionicons style={{ color: color.light.contrast }} size={40} name="ios-arrow-back" />
 			</TouchableOpacity>
 
 			{headerTitle ? (

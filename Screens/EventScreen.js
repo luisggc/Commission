@@ -4,7 +4,6 @@ import {Card} from 'src/components/Layout'
 import { TextApp, ThumbImage, Li, Separator, ButtonApp, Loading } from 'src/components/Layout'
 import { getEventQuery } from 'src/queries/queries'
 import { graphql } from 'react-apollo'
-import Form from 'src/components/Form'
 import {InputText} from '../components/FormElements'
 
 class EventScreen extends React.Component {

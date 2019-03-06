@@ -1,5 +1,5 @@
 import React from 'react'
-import { newColor } from '../utils/colors'
+import color from '../utils/theme'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import styled from 'styled-components'
@@ -31,7 +31,7 @@ class Header extends React.Component {
 		return (
 			<Container>
 				<Button onPress={() => this.props.navigation.openDrawer()}>
-					<FontAwesome size={28} color={newColor.dark.contrast} name="bars" />
+					<FontAwesome size={28} color={color.dark.contrast} name="bars" />
 				</Button>
 
 				<Space p={5}>
@@ -39,7 +39,7 @@ class Header extends React.Component {
 				</Space>
 
 				<Button onPress={() => this.goToNotification()}>
-					<FontAwesome size={28} color={newColor.dark.contrast} name="bell-o" />
+					<FontAwesome size={28} color={color.dark.contrast} name="bell-o" />
 
 					{notificationCount > 0 ? (
 						<View
@@ -53,10 +53,10 @@ class Header extends React.Component {
 								borderRadius: 20,
 								alignItems: 'center',
 								justifyContent: 'center',
-								backgroundColor: newColor.secondary()
+								backgroundColor: color.secondary()
 							}}
 						>
-							<Text style={{ color: newColor.light.contrast }}>{notificationCount}</Text>
+							<Text style={{ color: color.light.contrast }}>{notificationCount}</Text>
 						</View>
 					) : null}
 				</Button>
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		padding: -5,
-		backgroundColor: newColor.primary(),
-		borderBottomColor: newColor.secondary(),
+		backgroundColor: color.primary(),
+		borderBottomColor: color.secondary(),
 		borderBottomWidth: 2
 	},
 	padding5: {
@@ -109,7 +109,7 @@ export const StackNavigatorConfig = withHeader => {
 	return {
 		cardStyle: {
 			flex: 1,
-			backgroundColor: newColor.light.background
+			backgroundColor: color.light.background
 		},
 		defaultNavigationOptions
 	}

@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import googleMapsStyle from './googleMapsStyle'
 import SearchPlaces from 'src/components/SearchPlaces'
 import EventItems from './EventItems'
-import { Constants, Location, Permissions } from 'expo'
+import { Location, Permissions } from 'expo'
 
 class HomeScreen extends Component {
 	state = {

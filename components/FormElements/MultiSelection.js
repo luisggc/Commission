@@ -1,6 +1,6 @@
 import React from 'react'
 import InputFormat from './InputFormat'
-import { newColor } from 'src/utils/colors'
+import color from 'src/utils/theme'
 import { TouchableOpacity } from 'react-native'
 import { TextApp } from 'src/components/Layout'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
@@ -9,8 +9,8 @@ const MultipleSelectApp = props => (
 	<SectionedMultiSelect
 		styles={{ selectToggle: {} }}
 		colors={{
-			primary: newColor.primary(),
-			selectToggleTextColor: newColor.light.contrast
+			primary: color.primary(),
+			selectToggleTextColor: color.light.contrast
 		}}
 		searchPlaceholderText={'Procure...'}
 		removeAllText={'Remova todos'}
@@ -23,7 +23,7 @@ const MultipleSelectApp = props => (
 		readOnlyHeadings={true}
 		showDropDowns={false}
 		selectChildren={true}
-		searchSelectionColor={newColor.light.contrast}
+		searchSelectionColor={color.light.contrast}
 		searchPlaceholderText={'Pesquise aqui'}
 		noResultsComponent={
 			<TouchableOpacity onPress={() => props.onAddPress}>

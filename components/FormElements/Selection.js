@@ -1,6 +1,6 @@
 import React from 'react'
 import InputFormat from './InputFormat'
-import { newColor } from 'src/utils/colors'
+import color from 'src/utils/theme'
 import { StyleSheet, TextInput, Picker, Platform } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
 
@@ -21,7 +21,7 @@ export default function Selection(props) {
 			) : (
 				<Picker
 					style={{
-						color: newColor.light.contrast,
+						color: color.light.contrast,
 						height: 23
 					}}
 					selectedValue={value}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	textInput: {
-		color: newColor.light.contrast,
+		color: color.light.contrast,
 		fontSize: 15
 	},
 	textInputContainer: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		// backgroundColor: white_transp,
 		borderRadius: 2,
-		borderColor: newColor.light.contrast,
+		borderColor: color.light.contrast,
 		borderWidth: 0.5,
 		shadowOffset: { width: 1, height: 1 },
 		shadowColor: 'black',

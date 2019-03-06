@@ -3,7 +3,7 @@ import EventItem from './EventItem'
 import { graphql } from 'react-apollo'
 import { View, StyleSheet, FlatList, Animated, Dimensions, PanResponder } from 'react-native'
 import { getEventsQuery } from 'src/queries/queries'
-import color, { newColor } from 'src/utils/colors'
+import color from 'src/utils/theme'
 import { Loading } from 'src/components/Layout'
 import styled from 'styled-components'
 
@@ -68,16 +68,11 @@ const DraggableItem = styled.View`
 export default graphql(getEventsQuery)(EventItems)
 
 const styles = StyleSheet.create({
-	textInput: {
-		color: color.primary.contrastText,
-		fontSize: 15,
-		paddingVertical: 10
-	},
 	flatContainer: {
 		position: 'absolute',
 		width: Dimensions.get('window').width,
 		bottom: 0,
-		backgroundColor: newColor.light.background,
+		backgroundColor: color.light.background,
 		elevation: 2
 	},
 	draggable: {

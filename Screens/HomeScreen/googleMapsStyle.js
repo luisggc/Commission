@@ -1,6 +1,6 @@
-import { newColor } from '../../utils/colors'
+import color from '../../utils/theme'
 
-const { lowContrast, background } = newColor.light
+const { lowContrast, background } = color.light
 
 export default mapStyle = [
 	{

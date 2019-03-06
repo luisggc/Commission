@@ -22,13 +22,11 @@
 		"preset": "jest-expo"
 	},
 	"dependencies": {
-		"@material-ui/core": "^3.1.2",
 		"apollo-boost": "^0.1.16",
 		"expo": "^32.0.0",
 		"formik": "^1.5.1",
 		"geolib": "^2.0.24",
 		"graphql": "^14.0.2",
-		"material-palette": "^1.0.0",
 		"react": "16.5.0",
 		"react-apollo": "^2.1.11",
 		"react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",

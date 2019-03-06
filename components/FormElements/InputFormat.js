@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextApp } from '../Layout'
-import { newColor } from 'src/utils/colors'
+import color from 'src/utils/theme'
 
 export default props => (
 	<View style={styles.columnContainer}>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		alignSelf: 'center',
 		borderRadius: 2,
-		borderColor: newColor.light.contrast,
+		borderColor: color.light.contrast,
 		borderWidth: 0.5,
 		shadowOffset: { width: 1, height: 1 },
 		shadowColor: 'black',
