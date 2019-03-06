@@ -45,7 +45,12 @@ class HomeScreen extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				{true && (
-					<SearchPlaces region={region} onSelectRegion={region => this.setState({ region })} />
+					<SearchPlaces
+						float
+						region={region}
+						onSelectRegion={region => this.setState({ region })}
+						placeholder="Aonde Deus que te levar hoje ?"
+					/>
 				)}
 
 				<MapView

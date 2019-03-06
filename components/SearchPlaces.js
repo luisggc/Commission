@@ -4,12 +4,14 @@ import { GOOGLE_MAPS_API } from 'src/utils/credentials'
 import { TextApp, Space } from './Layout'
 import { TouchableOpacity, FlatList } from 'react-native'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
+import _ from 'lodash'
 
 export default class SearchPlaces extends Component {
 	constructor(props) {
 		super(props)
 		this.onChange = this.onChange.bind(this)
 		this.getDetailsPlace = this.getDetailsPlace.bind(this)
+		this.debounce = _.debounce(this.callAPI, 500)
 	}
 
 	state = {
@@ -18,18 +20,29 @@ export default class SearchPlaces extends Component {
 		error: false
 	}
 
-	async onChange(e) {
+	onChange = e => {
 		const search = e.nativeEvent.text
 		if (search.length < 4) {
 			this.setState({ search, places: [] })
 			return
 		}
 		this.setState({ search })
+		this.debounce(search)
+	}
+
+	async callAPI(search) {
+		console.log(search)
 		const { region } = this.props
-		const location = `${region.latitude},${region.longitude}`
-		const radius = '20000'
-		const language = 'pt-br'
-		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API}&input=${search}&language=${language}&radius=${radius}&location=${location}`
+		const location = region ? `&location=${region.latitude},${region.longitude}` : ''
+		const radius = '&radius=20000'
+		const language = '&language=pt-br'
+		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?
+					key=${GOOGLE_MAPS_API}&
+					input=${search}
+					${language}
+					${radius}
+					${location}`
+
 		try {
 			const result = await fetch(url)
 			const json = await result.json()
@@ -65,13 +78,15 @@ export default class SearchPlaces extends Component {
 
 	render() {
 		const { places, search, error } = this.state
+		const { float, placeholder } = this.props
 		return (
-			<ContainerMargin>
+			<ContainerMargin float={float}>
 				<ContainerSearch>
 					<InputSearch
 						value={search}
 						onChange={this.onChange}
-						placeholder="Aonde Deus que te levar hoje ?"
+						placeholder={placeholder}
+						float={float}
 					/>
 				</ContainerSearch>
 
@@ -125,7 +140,7 @@ const IconContainer = styled.View`
 	border-right-color: ${({ theme }) => theme.color.light.contrast};
 `
 const InputSearch = styled.TextInput`
-	padding: 15px 10px;
+	${p => p.float && `padding: 15px 10px;`}
 	flex-grow: 1;
 `
 
@@ -135,11 +150,15 @@ const ContainerSearch = styled.View`
 `
 
 const ContainerMargin = styled.View`
-	position: absolute;
-	display: flex;
-	top: 25;
-	width: 100%;
-	padding: 0 10px;
-	elevation: 6;
-	z-index: 6;
+	${p =>
+		p.float &&
+		`
+			position: absolute;
+			display: flex;
+			top: 25;
+			width: 100%;
+			padding: 0 10px;
+			elevation: 6;
+			z-index: 6;
+	`}
 `

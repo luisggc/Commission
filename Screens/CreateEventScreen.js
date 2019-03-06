@@ -7,12 +7,14 @@ import {
 	InputText,
 	MultiSelection,
 	DateTimePicker,
-	Selection
+	Selection,
+	InputFormat
 } from 'src/components/FormElements'
 import { ButtonApp } from 'src/components/Layout'
 import { withFormik } from 'formik'
 import { TextApp } from '../components/Layout'
 import * as Yup from 'yup'
+import SearchPlaces from 'src/components/SearchPlaces'
 
 function CreateEventScreen(props) {
 	const { values, touched, errors, handleChange, handleBlur, setFieldValue, handleSubmit } = props
@@ -75,6 +77,13 @@ function CreateEventScreen(props) {
 					value={values.datetimeStart}
 				/>
 
+				<InputFormat name={'Selecione o local do evento'}>
+					<SearchPlaces
+						placeholder="Use o google para achar seu lugar"
+						onSelectRegion={location => setFieldValue('location', location)}
+					/>
+				</InputFormat>
+
 				<ButtonApp onPress={() => sendForm(errors, handleSubmit)} style={styles.button}>
 					Enviar !
 				</ButtonApp>
@@ -107,7 +116,8 @@ function mapPropsToValues({
 	user,
 	assistances,
 	recurrence,
-	datetimeStart
+	datetimeStart,
+	location
 }) {
 	return {
 		name: name || '',
@@ -116,7 +126,8 @@ function mapPropsToValues({
 		description: description || '',
 		assistances: assistances || [],
 		recurrence: recurrence || 'Uma vez',
-		datetimeStart: datetimeStart || ''
+		datetimeStart: datetimeStart || '',
+		location: location || ''
 	}
 }
 
@@ -134,7 +145,8 @@ const validationSchema = Yup.object().shape({
 	description: Yup.string().required('"Descrição" deve ser preenchido'),
 	recurrence: Yup.string().required('"Recorrência" deve ser preenchido'),
 	host: Yup.string().required('"Organizador" deve ser preenchido'),
-	datetimeStart: Yup.string().required('"Dia do Evento" deve ser preenchido')
+	datetimeStart: Yup.string().required('"Dia do Evento" deve ser preenchido'),
+	location: Yup.string().required('"Localização" deve ser preenchido')
 })
 
 export default withFormik({
