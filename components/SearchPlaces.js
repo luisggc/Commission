@@ -42,6 +42,7 @@ export default class SearchPlaces extends Component {
 		} catch {
 			console.log('erroooo')
 			this.setState({ error: true })
+			
 		}
 	}
 
@@ -65,7 +66,7 @@ export default class SearchPlaces extends Component {
 	}
 
 	render() {
-		const { places, search } = this.state
+		const { places, search, error } = this.state
 		return (
 			<ContainerMargin>
 				<ContainerSearch>
@@ -85,13 +86,19 @@ export default class SearchPlaces extends Component {
 						/>
 					</ContainerPlaces>
 				)}
+				{error &&(
+					<ContainerPlaces height={52}>
+						<TextApp>Falha na conexão. Certifique-se de que está conectado a internet.</TextApp>
+					</ContainerPlaces>
+				)}
+
 			</ContainerMargin>
 		)
 	}
 }
 
 const ContainerPlaces = styled.View`
-	height: 180px;
+	height: ${p => p.height ? p.height : '180px'};
 	padding: 10px;
 	background-color: ${({ theme }) => theme.color.light.lowContrast};
 `
