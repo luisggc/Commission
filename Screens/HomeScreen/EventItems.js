@@ -51,7 +51,7 @@ class EventItems extends Component {
 			data: { events },
 			myLocation
 		} = this.props
-		
+
 		return (
 			<Animated.View style={[styles.flatContainer, { height: this.height }]}>
 				<View style={styles.draggable} {...this.panResponder.panHandlers}>
@@ -77,7 +77,7 @@ class EventItems extends Component {
 const DraggableItem = styled.View`
 	background-color: ${({ theme }) => theme.color.interactive()};
 	align-self: center;
-	height: 5;
+	height: 3;
 	width: 35;
 	border-radius: 2;
 `
