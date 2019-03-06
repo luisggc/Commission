@@ -3,7 +3,7 @@ import ButtonApp from './ButtonApp'
 import Space from './Space'
 import Card from './Card'
 import Separator from './Separator'
-import Loading from './Card'
+import Loading from './Loading'
 import Li from './Li'
 import ThumbImage from './ThumbImage'
 

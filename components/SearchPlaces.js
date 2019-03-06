@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { GOOGLE_MAPS_API } from 'src/utils/credentials'
 import { TextApp, Space } from './Layout'
-import { TouchableOpacity, FlatList, StyleSheet } from 'react-native'
+import { TouchableOpacity, FlatList } from 'react-native'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 
 export default class SearchPlaces extends Component {
@@ -40,9 +40,7 @@ export default class SearchPlaces extends Component {
 
 			this.setState({ places: places, error: false })
 		} catch {
-			console.log('erroooo')
 			this.setState({ error: true })
-			
 		}
 	}
 
@@ -50,16 +48,16 @@ export default class SearchPlaces extends Component {
 		const { onSelectRegion } = this.props
 		const url = `https://maps.googleapis.com/maps/api/place/details/json?key=${GOOGLE_MAPS_API}&placeid=${placeID}&language=pt-br`
 		try {
-			const result = await fetch(url)
-			const json = await result.json()
-			const { lat, lng } = json.result.geometry.location
+			const response = await fetch(url)
+			const json_response = await response.json()
+			const { lat, lng } = json_response.result.geometry.location
 			onSelectRegion({
 				latitude: lat,
 				longitude: lng,
 				latitudeDelta: 0.0122,
 				longitudeDelta: 0.0122
 			})
-			this.setState({ places: [], search: json.result.name })
+			this.setState({ places: [], search: json_response.result.name })
 		} catch {
 			this.setState({ error: true })
 		}
@@ -76,6 +74,15 @@ export default class SearchPlaces extends Component {
 						placeholder="Aonde Deus que te levar hoje ?"
 					/>
 				</ContainerSearch>
+
+				{error && (
+					<ContainerPlaces height={52}>
+						<TextApp>
+							Falha na conexão. Certifique-se de que está conectado a internet.
+						</TextApp>
+					</ContainerPlaces>
+				)}
+
 				{places.length > 0 && (
 					<ContainerPlaces>
 						<FlatList
@@ -86,19 +93,13 @@ export default class SearchPlaces extends Component {
 						/>
 					</ContainerPlaces>
 				)}
-				{error &&(
-					<ContainerPlaces height={52}>
-						<TextApp>Falha na conexão. Certifique-se de que está conectado a internet.</TextApp>
-					</ContainerPlaces>
-				)}
-
 			</ContainerMargin>
 		)
 	}
 }
 
 const ContainerPlaces = styled.View`
-	height: ${p => p.height ? p.height : '180px'};
+	height: ${p => (p.height ? p.height : '180px')};
 	padding: 10px;
 	background-color: ${({ theme }) => theme.color.light.lowContrast};
 `
@@ -116,13 +117,6 @@ const Place = ({ structured_formatting, place_id, getDetailsPlace }) => (
 		</Space>
 	</TouchableOpacity>
 )
-
-const styles = StyleSheet.create({
-	placesContainer: {
-		display: 'flex',
-		height: 100
-	}
-})
 
 const IconContainer = styled.View`
 	padding: 10px;
