@@ -1,23 +1,30 @@
 import { gql } from 'apollo-boost'
 
 export const getEventsQuery = gql`
-	{
-		events {
-			id
+	query GetEvents($location: [Float]) {
+		events(location: $location) {
+			_id
+			avatar
 			name
 			host
 			description
+			distance
+			location {
+				coordinates
+			}
 		}
 	}
 `
 export const getEventQuery = gql`
-	query GetEvent($id: ID) {
-		event(id: $id) {
-			id
+	query GetEvent($_id: ID!) {
+		event(_id: $_id) {
+			_id
+			avatar
+			eventDate
 			name
 			host
 			description
-			user {
+			creator {
 				name
 			}
 			assistances {

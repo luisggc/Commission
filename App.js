@@ -15,7 +15,7 @@ import { ThemeProvider } from 'styled-components'
 
 const client = new ApolloClient({
 	//Doesn't work outside you emulator
-	uri: 'http://192.168.0.11:4000/graphql'
+	uri: 'http://192.168.0.15:4000/graphql'
 })
 
 const AppStackNavigator = createStackNavigator(
@@ -38,7 +38,6 @@ const AppStackNavigator = createStackNavigator(
 )
 
 const AppNavigator = createDrawerNavigator({ AppStackNavigator }, drawerNavigatorConfig())
-
 const AppContainer = createAppContainer(AppNavigator)
 
 export default class App extends React.Component {

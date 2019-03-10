@@ -38,9 +38,6 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		borderRadius: 2,
 		borderColor: color.light.contrast,
-		borderWidth: 0.5,
-		shadowOffset: { width: 1, height: 1 },
-		shadowColor: 'black',
-		shadowOpacity: 0.5
+		borderWidth: 0.5
 	}
 })

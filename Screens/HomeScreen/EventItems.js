@@ -60,7 +60,7 @@ class EventItems extends Component {
 				<FlatList
 					data={events}
 					navigation={this.props.navigation}
-					keyExtractor={item => item.id}
+					keyExtractor={item => item._id}
 					renderItem={({ item }) => (
 						<EventItem
 							myLocation={myLocation}
@@ -81,7 +81,19 @@ const DraggableItem = styled.View`
 	width: 35;
 	border-radius: 2;
 `
-export default graphql(getEventsQuery)(EventItems)
+// export default graphql(getEventsQuery)(EventItems)
+
+export default graphql(getEventsQuery, {
+	options: props => {
+		if (!props.userLocation) return {}
+		const {latitude, longitude} = props.userLocation
+		return {
+			variables: {
+				location: [longitude, latitude]
+			}
+		}
+	}
+})(EventItems)
 
 const styles = StyleSheet.create({
 	flatContainer: {
@@ -99,35 +111,3 @@ const styles = StyleSheet.create({
 		zIndex: 4
 	}
 })
-
-// const events = [
-// 	{
-// 		name: 'Evangelismo nas Ruas',
-// 		host:
-// 			'Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica Igreja Batista Central em Cerâmica',
-// 		description: 'Buscar evangelismo em praças próximo à igreja',
-// 		id: '1',
-// 		userId: '1'
-// 	},
-// 	{
-// 		name: 'Pregação na Praça',
-// 		host: 'Igreja Assembléia de Deus',
-// 		description: 'Pregação em praça próxima',
-// 		id: '2',
-// 		userId: '2'
-// 	},
-// 	{
-// 		name: 'Doar agasalhos',
-// 		host: 'CRU',
-// 		description: 'Evangelismo nas universidades',
-// 		id: '3',
-// 		userId: '3'
-// 	},
-// 	{
-// 		name: 'Dar treinamentos',
-// 		host: 'Pais',
-// 		description: 'Aprendizado infanto-juvenil em escolas',
-// 		id: '4',
-// 		userId: '2'
-// 	}
-// ]

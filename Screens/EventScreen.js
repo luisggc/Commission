@@ -1,24 +1,23 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import {Card} from 'src/components/Layout'
+import { Card } from 'src/components/Layout'
 import { TextApp, ThumbImage, Li, Separator, ButtonApp, Loading } from 'src/components/Layout'
 import { getEventQuery } from 'src/queries/queries'
 import { graphql } from 'react-apollo'
-import {InputText} from '../components/FormElements'
+import { InputText } from '../components/FormElements'
 
 class EventScreen extends React.Component {
 	state = {
 		text: ''
 	}
 	render() {
-
 		if (this.props.data.loading) {
 			return <Loading />
 		}
-		const { id, name, host, description, user, assistances } = this.props.data.event
+		const { _id, name, avatar, host, description, user, assistances } = this.props.data.event
 		return (
 			<Card padding>
-				<ThumbImage source={require('../assets/images/user.jpg')} />
+				<ThumbImage source={{ uri: avatar }} />
 				<View style={styles.statusContainer}>
 					<TextApp style={{ fontSize: 16 }}>{name}</TextApp>
 					<TextApp style={styles.description} secondary>
@@ -29,7 +28,11 @@ class EventScreen extends React.Component {
 				<Separator style={{ marginVertical: 15 }} />
 				<TextApp style={{ marginBottom: 10, fontSize: 16 }}>Auxílios:</TextApp>
 				<Li items={assistances} />
-				<InputText onChange={text => this.setState({ text })} name="Se apresente para eles conhecerem melhor você" placeholder='Gostaria de ajudar na área X'/>
+				<InputText
+					onChange={text => this.setState({ text })}
+					name="Se apresente para eles conhecerem melhor você"
+					placeholder="Gostaria de ajudar na área X"
+				/>
 				<ButtonApp>Enviar</ButtonApp>
 			</Card>
 		)
@@ -66,7 +69,7 @@ export default graphql(getEventQuery, {
 	options: props => {
 		return {
 			variables: {
-				id: props.navigation.state.params.id
+				_id: props.navigation.state.params._id
 			}
 		}
 	}

@@ -21,17 +21,26 @@ function CreateEventScreen(props) {
 	const { values, touched, errors, handleChange, handleBlur, setFieldValue, handleSubmit } = props
 	return (
 		<Card headerTitle={'Faça a diferença !'} padding>
+
 			<ChooseIcon name="Selecione um ícone" />
 			<InputText
 				name="Título do Evento"
 				placeholder="Evangelismo de rua, Doação, Pregaçãos..."
 				onChangeText={handleChange('name')}
 			/>
+
 			<InputText
 				name="Breve descrição"
 				placeholder="Encontro para a distribuição de agasalhos"
 				onChangeText={handleChange('description')}
 			/>
+
+			<InputFormat name={'Selecione o local do evento'}>
+				<SearchPlaces
+					placeholder="Use o google para achar seu lugar"
+					onSelectRegion={location => setFieldValue('location', location)}
+				/>
+			</InputFormat>
 
 			<InputText
 				name="Organização"
@@ -46,6 +55,20 @@ function CreateEventScreen(props) {
 				onPress={setFieldValue}
 				field="assistances"
 				// onAddPress={(e) => console.log('onaddpress', e)} // this.addOptions(key, 'oi')}
+			/>
+
+			<DateTimePicker
+				field="eventDate"
+				name="Dia/Horário"
+				placeholder="Selecione aqui o dia e horário"
+				setFieldValue={setFieldValue}
+				value={values.eventDate}
+			/>
+
+			<PeriodPicker
+				name="Duração"
+				onChange={duration => setFieldValue('duration', duration)}
+				value={values.duration}
 			/>
 
 			<Selection
@@ -68,27 +91,6 @@ function CreateEventScreen(props) {
 					Temporada trata-se de um período de tempo fixo em um local, como uma viagem.
 				</TextApp>
 			)}
-
-			<DateTimePicker
-				field="datetimeStart"
-				name="Dia/Horário"
-				placeholder="Selecione aqui o dia e horário"
-				setFieldValue={setFieldValue}
-				value={values.datetimeStart}
-			/>
-
-			<PeriodPicker
-				name="Duração"
-				onChange={duration => setFieldValue('duration', duration)}
-				value={values.duration}
-			/>
-
-			<InputFormat name={'Selecione o local do evento'}>
-				<SearchPlaces
-					placeholder="Use o google para achar seu lugar"
-					onSelectRegion={location => setFieldValue('location', location)}
-				/>
-			</InputFormat>
 
 			<ButtonApp onPress={() => sendForm(errors, handleSubmit)} style={styles.button}>
 				Enviar !
@@ -116,25 +118,25 @@ function sendForm(errors, handleSubmit) {
 }
 function mapPropsToValues({
 	name,
-	host,
 	description,
-	user,
-	assistances,
-	recurrence,
-	datetimeStart,
 	location,
-	duration
+	host,
+	assistances,
+	eventDate,
+	duration,
+	recurrence,
+	user,
 }) {
 	return {
 		name: name || '',
-		host: host || '',
-		user: user || '',
 		description: description || '',
-		assistances: assistances || [],
-		recurrence: recurrence || 'Uma vez',
-		datetimeStart: datetimeStart || '',
 		location: location || '',
+		host: host || '',
+		assistances: assistances || [],
+		eventDate: eventDate || '',
 		duration: duration || '',
+		recurrence: recurrence || 'Uma vez',
+		user: user || '',
 	}
 }
 
@@ -152,9 +154,11 @@ const validationSchema = Yup.object().shape({
 	description: Yup.string().required('"Descrição" deve ser preenchido'),
 	recurrence: Yup.string().required('"Recorrência" deve ser preenchido'),
 	host: Yup.string().required('"Organizador" deve ser preenchido'),
-	datetimeStart: Yup.string().required('"Dia do Evento" deve ser preenchido'),
+	eventDate: Yup.string().required('"Dia do Evento" deve ser preenchido'),
 	location: Yup.string().required('"Localização" deve ser preenchido'),
-	duration: Yup.number().min(60).required('"Duração" deve ser preenchida e ser um número')
+	duration: Yup.number()
+		.min(60)
+		.required('"Duração" deve ser preenchida e ser um número')
 })
 
 export default withFormik({
