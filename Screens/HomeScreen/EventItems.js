@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import EventItem from './EventItem'
-import { graphql } from 'react-apollo'
 import { View, StyleSheet, FlatList, Animated, Dimensions, PanResponder } from 'react-native'
+import { graphql } from 'react-apollo'
+import styled from 'styled-components'
+
 import { getEventsQuery } from 'src/queries/queries'
+import EventItem from './EventItem'
 import { color } from 'src/utils/theme'
 import { Loading } from 'src/components/Layout'
-import styled from 'styled-components'
 
 class EventItems extends Component {
 	constructor(props) {
@@ -28,7 +29,11 @@ class EventItems extends Component {
 
 	componentDidUpdate() {
 		//Run initial animation
-		if (!this.props.data.loading && !this.state.initialAnimation) {
+		if (
+			!this.props.data.loading &&
+			this.props.locationPermissionStatus !== null &&
+			!this.state.initialAnimation
+		) {
 			const newHeight = 0.4 * Dimensions.get('window').height
 			Animated.spring(this.height, { toValue: newHeight, speed: 12 }).start()
 			this.setState({
@@ -39,7 +44,7 @@ class EventItems extends Component {
 	}
 
 	render() {
-		if (this.props.data.loading) {
+		if (this.props.data.loading || this.props.locationPermissionStatus == null) {
 			return (
 				<Animated.View style={[styles.flatContainer, { height: this.height }]}>
 					<Loading />
@@ -86,7 +91,7 @@ const DraggableItem = styled.View`
 export default graphql(getEventsQuery, {
 	options: props => {
 		if (!props.userLocation) return {}
-		const {latitude, longitude} = props.userLocation
+		const { latitude, longitude } = props.userLocation
 		return {
 			variables: {
 				location: [longitude, latitude]

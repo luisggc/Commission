@@ -2,9 +2,9 @@ import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { TextApp, ThumbImage } from '../../components/Layout'
 
-class EventItem extends React.Component {
+class EventItem extends React.PureComponent {
 	render() {
-		const { name, avatar, host, description, onJoin, distance, location } = this.props
+		const { name, avatar, host, description, onJoin, distance } = this.props
 		return (
 			<TouchableOpacity onPress={onJoin}>
 				<View style={styles.container}>

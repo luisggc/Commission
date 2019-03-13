@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+import { Location, Permissions } from 'expo'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+
+import EventItems from './EventItems'
+import AppContext from 'src/components/AppContext'
 import googleMapsStyle from './googleMapsStyle'
 import SearchPlaces from 'src/components/SearchPlaces'
-import EventItems from './EventItems'
-import { Location, Permissions } from 'expo'
-import { ButtonApp } from '../../components/Layout'
+import { ButtonApp } from 'src/components/Layout'
 
 class HomeScreen extends Component {
-	state = {
-		region: {
-			latitude: -22.911098,
-			longitude: -43.236292,
-			latitudeDelta: 0.06,
-			longitudeDelta: 0.06
-		},
-		regionDefault: true
+
+	constructor(props) {
+		super(props)
+		this._getLocationAsync = this._getLocationAsync.bind(this)
 	}
 
 	componentDidMount() {
@@ -27,48 +25,53 @@ class HomeScreen extends Component {
 		if (status == 'granted') {
 			const location = await Location.getCurrentPositionAsync({})
 			const { latitude, longitude } = location.coords
-			this.setState({
-				region: {
+			this.props.contextApp.setState({
+				userLocation: {
 					latitude,
 					longitude,
-					latitudeDelta: 0.06,
-					longitudeDelta: 0.06
+					latitudeDelta: 0.14,
+					longitudeDelta: 0.14
 				},
-				regionDefault: false
+				locationPermissionStatus: 'granted'
 			})
+			return
 		}
+		this.props.contextApp.setState({
+			locationPermissionStatus: status
+		})
 	}
 
 	render() {
-		const { region, regionDefault } = this.state
+		const { userLocation, locationPermissionStatus } = this.props.contextApp
 		return (
 			<View style={{ flex: 1 }}>
 				{true && (
 					<SearchPlaces
 						float
-						region={region}
-						onSelectRegion={region => this.setState({ region })}
-						placeholder="Aonde Deus que te levar hoje ?"
+						region={userLocation}
+						onSelectRegion={userLocation => this.setState({ userLocation })}
+						placeholder="Aonde Deus quer te levar hoje ?"
 					/>
 				)}
-				{regionDefault && (
+				{locationPermissionStatus == 'denied' && (
 					<ButtonApp onPress={() => this._getLocationAsync()}>Permitir localização</ButtonApp>
 				)}
 				<MapView
-					region={region}
+					region={userLocation}
 					provider={PROVIDER_GOOGLE}
 					style={{ flex: 1, flexGrow: 1 }}
 					customMapStyle={googleMapsStyle}
 					showsUserLocation={true}
 				/>
 				<EventItems
-					myLocation={region}
-					userLocation={regionDefault ? null : region}
+					myLocation={userLocation}
+					userLocation={locationPermissionStatus !== 'granted' ? null : userLocation}
 					navigation={this.props.navigation}
+					locationPermissionStatus={locationPermissionStatus}
 				/>
 			</View>
 		)
 	}
 }
 
-export default HomeScreen
+export default AppContext(HomeScreen)
